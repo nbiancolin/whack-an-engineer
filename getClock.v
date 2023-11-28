@@ -1,10 +1,10 @@
 module getClock(clock);
-    output reg clk
+    output reg clock;
     parameter SWITCHTIME = 500;
     initial begin 
-        clk = 1; 
+        clock = 1; 
     end
     always begin
-        #SWITCHTIME clk = ~clk;
+        #SWITCHTIME clock = ~clock;
     end
 endmodule
