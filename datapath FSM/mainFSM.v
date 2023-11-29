@@ -1,4 +1,5 @@
-module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, current_state;);
+module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, current_state);
+//5 registers, each one 2 bits, 4 states, onscreen, hit, miss, offscreen
     input clock;
     input reset; //from Jason -- reset
     input startGame; //startGame //from Jason -- allow startGame state
@@ -29,8 +30,10 @@ module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, curr
     reg enableCountdown;
     reg scoreReset;
     //functions associated with startGame
-    generateMoles u1(clock, gameStart, molesGenerated);
-    matchLogic u0(clock, molesGenerated, userGameInput, moleHit, moleMiss);
+
+    generateMoles u1(.clock(clock), .enable(moleHit != 5'b00000 || current_state == STARTGAME), .molesGenerated(molesGenerated));
+    matchLogic u0(.clock(clock), .molesGenerated(molesGenerated), .hit(userGameInput), .moleHit(moleHit), .moleMiss(moleMiss));
+
     countdownTimer u2(clock, scoreReset, enableCountdown, gameEnd, currentCountDown);
     scoreKeeper u3(clock, scoreReset, moleHit, score);
 

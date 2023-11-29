@@ -1,13 +1,8 @@
-module generateMoles (clock, gameStart, molesGenerated);
+module generateMoles (clock, enable, molesGenerated);
     input clock;
     input gameStart;
+    input enable;
     output reg [4:0] molesGenerated;
 
-    always@(posedge clock) begin
-        if (gameStart) begin
-            molesGenerated = 5'b01001;
-        end else begin
-            molesGenerated = 5'b00000;
-        end
-    end
+    generateFunction gen(.clock(clock), .enable(enable), .molesGenerated(molesgenerated)); //5'b00000 means no generated
 endmodule
