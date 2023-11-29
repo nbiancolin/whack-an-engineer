@@ -39,8 +39,9 @@ def old_get_colour(x, y):
     col = list(pix[x, y])  # Convert the tuple to a list
     res = "3'b"
     for i in range(3):
-        if col[i] != 0:
+        if col[i] > 31:
             col[i] = 1
+        else: col[i] = 0
         res += str(col[i])
     return res
 
@@ -85,7 +86,7 @@ if __name__ == "__main__":
     
 
     #beginning file stuff
-    f = open("output.txt", "w")
+    f = open("./output/{args.filename}.txt", "w")
     f.write("# imgToV Converter\n")
     #f.write("# this code assumes clock is labelled as \' clk \'\n\n")
 
@@ -95,7 +96,9 @@ if __name__ == "__main__":
     f.write(": 0];\n")
     f.write("# reg yCount[ ")
     f.write(str(math.ceil(yReg)))
-    f.write(": 0];\n")
+    f.write(": 0];\n\n")
+
+    f.write("you should be sure to set your x and y limits to {size[0]} and {size[1]} respectively\n")
 
     f.write("comment out any lines of code that set colour, and place this after your counters are updated\n\n")
 
@@ -114,7 +117,7 @@ if __name__ == "__main__":
             f.write("\n")
             temp = col
     
-    print("Output is stored in output.txt")
+    print("Output is stored in ./output/{args.filename}.txt")
     print("(in same folder as this script!)")
     print(" ** IMPORTANT **")
     print("ensure to set the \"XCOUNT\" and \"YCOUNT\" global variables at the top of the python file to match your iteration variables" )
