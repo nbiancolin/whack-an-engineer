@@ -1,24 +1,41 @@
-module mainDataPath(clock, reset, startGame, userGameInput);
+module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, current_state;);
     input clock;
-    input reset; //from Jason
-    input startGame; //startGame //from Jason
+    input reset; //from Jason -- reset
+    input startGame; //startGame //from Jason -- allow startGame state
     input [2:0] userGameInput; //which mole currently getting hit //from Jason
 
-    wire gameOver;
 
-    reg [4:0] molesGenerated;
-    wire moleMiss;
+    output reg [2:0] current_state, 
+    output reg [4:0] molesGenerated;
 
-    reg [2:0] current_state, next_state;
+    reg [2:0] next_state;
     localparam  IDLE            = 3'd0,
                 STARTSCREEN     = 3'd1,
                 STARTGAME       = 3'd2,
-                GAMEOVER        = 3'd4,
+                INGAME          = 3'd3,
+                GAMEOVER        = 3'd4;
 
-    matchLogic u0(clock, molesGenerated, hit, moleHit, moleMiss);
-    generateMoles u1(clock, molesGenerated);
+    reg gameOver; //if gameEnd and INGAME, then move onto GAMEOVER state
+    // STILL VARIABLE"S CODE NEED TO BE ADDED
 
+    //these are variables associated with startGame
+    wire moleMiss;
+    wire [5:0] currentCountDown;
+    wire gameStart;
+    wire gameEnd; // when countDown hits 0, this enables
+    wire [7:0] score; //score tracker
+    //the following 2 will enable when first reach gameState
+    wire moleHit[2:0]; // if user successfully hit a mole, display position of mole hit
+    wire moleMiss; // if user missed the mole
+    reg enableCountdown;
+    reg scoreReset;
+    //functions associated with startGame
+    generateMoles u1(clock, gameStart, molesGenerated);
+    matchLogic u0(clock, molesGenerated, userGameInput, moleHit, moleMiss);
+    countdownTimer u2(clock, scoreReset, enableCountdown, gameEnd, currentCountDown);
+    scoreKeeper u3(clock, scoreReset, moleHit, score);
 
+    //main FSM part of the code
     always @(posedge clock or posedge reset) begin
         if (reset) begin
             current_state <= IDLE;
@@ -28,15 +45,18 @@ module mainDataPath(clock, reset, startGame, userGameInput);
         end
     end
 
-    //FSM: one hot state
+    //FSM: one hot state and state transitions
     always@(*) begin
         case(current_state)
         IDLE: 
-            next_state = START_SCREEN;
-        START_SCREEN:
-            next_state = startGame? STARTGAME : START_SCREEN;
+            next_state = STARTSCREEN;
+        STARTSCREEN:
+            next_state = startGame? STARTGAME : STARTSCREEN;
         STARTGAME:
-            next_state = gameOver? GAMEOVER : STARTGAME;
+            //this stage allows for game to start, reset counter and score
+            next_state = INGAME;
+        INGAME:
+            next_state = gameOver? GAMEOVER: INGAME;
         GAMEOVER:
             next_state = reset? IDLE : GAMEOVER;
         default:
@@ -44,7 +64,27 @@ module mainDataPath(clock, reset, startGame, userGameInput);
         endcase
     end
 
-    always@(posedge clock)begin
-        //logic later
+    //state actions
+    always@(posedge clock or posedge reset) begin
+        if (reset) begin
+            scoreReset <= 1;
+            enableCountdown <= 0;
+        end else begin
+            case(current_state) 
+                STARTGAME: begin
+                    enableCountdown <= 0;
+                    score_reset <= 1;
+                end
+                INGAME: begin
+                    enableCountdown <= 1;
+                    score_reset <= 0;
+                end
+                GAMEOVER: begin
+                    enableCountdown <= 0;
+                    score_reset <= 1;
+                end
+            endcase
+            // A LOT OF CODE STILL NEEDS TO BE ADDED HERE
+        end
     end
 endmodule
