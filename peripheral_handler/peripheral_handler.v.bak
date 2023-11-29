@@ -1,0 +1,11 @@
+module handler(CLOCK50, PS2_CLK, PS2_DAT, MOUSE_MODE, X_POS, Y_POS);
+	input CLOCK50;
+	inout PS2_CLK, PS2_DAT;
+	input MOUSE_MODE;
+	output [7:0] X_POS, Y_POS;
+	
+	parameter [7:0] X_SIZE = 'd160, Y_SIZE = 'd120;
+	
+	
+	
+endmodule

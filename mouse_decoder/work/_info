@@ -1,0 +1,50 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder
+vmouse_decoder
+Z1 !s110 1701294438
+!i10b 1
+!s100 ^LW>=D59X?I6]AO<^=QIk1
+IgKm^WCzDSLQRY[]<VMfK_2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1701294434
+Z4 8mouse_decoder.v
+Z5 Fmouse_decoder.v
+L0 26
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1701294438.000000
+Z8 !s107 mouse_decoder.v|
+Z9 !s90 -reportprogress|300|mouse_decoder.v|
+!i113 1
+Z10 tCvgOpt 0
+vmouse_mapper
+R1
+!i10b 1
+!s100 mP6g_?CYCh58G_MLXoZJV3
+IhAJdKK6l[G5FC7LzLX09V3
+R2
+R0
+R3
+R4
+R5
+L0 3
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10

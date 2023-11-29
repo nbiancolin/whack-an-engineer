@@ -1,0 +1,101 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "X_POS[0]",
+					"strict" : false
+				},
+				{
+					"name" : "X_POS[1]",
+					"strict" : false
+				},
+				{
+					"name" : "X_POS[2]",
+					"strict" : false
+				},
+				{
+					"name" : "X_POS[3]",
+					"strict" : false
+				},
+				{
+					"name" : "X_POS[4]",
+					"strict" : false
+				},
+				{
+					"name" : "X_POS[5]",
+					"strict" : false
+				},
+				{
+					"name" : "X_POS[6]",
+					"strict" : false
+				},
+				{
+					"name" : "X_POS[7]",
+					"strict" : false
+				},
+				{
+					"name" : "Y_POS[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Y_POS[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Y_POS[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Y_POS[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Y_POS[4]",
+					"strict" : false
+				},
+				{
+					"name" : "Y_POS[5]",
+					"strict" : false
+				},
+				{
+					"name" : "Y_POS[6]",
+					"strict" : false
+				},
+				{
+					"name" : "Y_POS[7]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY_PRESSED[0]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY_PRESSED[1]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY_PRESSED[2]",
+					"strict" : false
+				},
+				{
+					"name" : "PS2_CLK",
+					"strict" : false
+				},
+				{
+					"name" : "PS2_DAT",
+					"strict" : false
+				},
+				{
+					"name" : "resetn",
+					"strict" : false
+				},
+				{
+					"name" : "CLOCK50",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,48 @@
+module mouse_mapper(PS2_CLK, PS2_DAT, CLOCK50, KEY, SW, LEDR, HEX1, HEX0);
+	// for physical debugging
+	inout PS2_CLK, PS2_DAT;
+	input CLOCK50;
+	input [3:0] KEY;
+	input [9:0] SW;
+	output [9:0] LEDR;
+	output [6:0] HEX1, HEX0;
+	
+	wire [7:0] received_data;
+	wire received_data_en;
+	
+	PS2
+	hex_decoder h0(received_data[3:0], HEX0);
+	hex_decoder h1(received_data[7:4], HEX1);
+
+endmodule
+
+module mouse_decoder(clock, PS2_CLK, PS2_DAT, resetn, received_data, received_data_en);
+	input clock;
+	inout PS2_CLK, PS_DAT;
+	input resetn;
+	output wire [7:0] received_data;
+	output wire received_data_en;
+	
+	
+	
+endmodule
+
+module hex_decoder(c, display); // from lab2
+	input [3:0] c;
+	output [6:0] display;
+	
+	assign display[0] = ~((~c[3] & ~c[2] & ~c[1] & ~c[0]) | (~c[3] & ~c[2] & c[1] & ~c[0]) | (~c[3] & ~c[2] & c[1] & c[0]) | (~c[3] & c[2] & ~c[1] & c[0]) | (~c[3] & c[2] & c[1] & ~c[0]) | (~c[3] & c[2] & c[1] & c[0]) | (c[3] & ~c[2] & ~c[1] & ~c[0]) | (c[3] & ~c[2] & ~c[1] & c[0]) | (c[3] & ~c[2] & c[1] & ~c[0]) | (c[3] & c[2] & ~c[1] & ~c[0]) | (c[3] & c[2] & c[1] & ~c[0]) | (c[3] & c[2] & c[1] & c[0]));
+	
+	assign display[1] = ~((~c[3] & ~c[2] & ~c[1] & ~c[0]) | (~c[3] & ~c[2] & ~c[1] & c[0]) | (~c[3] & ~c[2] & c[1] & ~c[0]) | (~c[3] & ~c[2] & c[1] & c[0]) | (~c[3] & c[2] & ~c[1] & ~c[0]) | (~c[3] & c[2] & c[1] & c[0]) | (c[3] & ~c[2] & ~c[1] & ~c[0]) | (c[3] & ~c[2] & ~c[1] & c[0]) | (c[3] & ~c[2] & c[1] & ~c[0]) | (c[3] & c[2] & ~c[1] & c[0]));
+	
+	assign display[2] = ~((~c[3] & ~c[2] & ~c[1] & ~c[0]) | (~c[3] & ~c[2] & ~c[1] & c[0]) | (~c[3] & ~c[2] & c[1] & c[0]) | (~c[3] & c[2] & ~c[1] & ~c[0]) | (~c[3] & c[2] & ~c[1] & c[0]) | (~c[3] & c[2] & c[1] & ~c[0]) | (~c[3] & c[2] & c[1] & c[0]) | (c[3] & ~c[2] & ~c[1] & ~c[0]) | (c[3] & ~c[2] & ~c[1] & c[0]) | (c[3] & ~c[2] & c[1] & ~c[0]) | (c[3] & ~c[2] & c[1] & c[0]) | (c[3] & c[2] & ~c[1] & c[0]));
+	
+	assign display[3] = ~((~c[3] & ~c[2] & ~c[1] & ~c[0]) | (~c[3] & ~c[2] & c[1] & ~c[0]) | (~c[3] & ~c[2] & c[1] & c[0]) | (~c[3] & c[2] & c[1] & ~c[0]) | (~c[3] & c[2] & ~c[1] & c[0]) | (~c[3] & c[2] & c[1] & ~c[0]) | (c[3] & ~c[2] & ~c[1] & ~c[0]) | (c[3] & ~c[2] & ~c[1] & c[0]) | (c[3] & ~c[2] & c[1] & c[0]) | (c[3] & c[2] & ~c[1] & ~c[0]) | (c[3] & c[2] & ~c[1] & c[0]) | (c[3] & c[2] & c[1] & ~c[0]));
+	
+	assign display[4] = ~((~c[3] & ~c[2] & ~c[1] & ~c[0]) | (~c[3] & ~c[2] & c[1] & ~c[0]) | (~c[3] & c[2] & c[1] & ~c[0]) | (c[3] & ~c[2] & ~c[1] & ~c[0]) | (c[3] & ~c[2] & c[1] & ~c[0]) | (c[3] & ~c[2] & c[1] & c[0]) | (c[3] & c[2] & ~c[1] & ~c[0]) | (c[3] & c[2] & ~c[1] & c[0]) | (c[3] & c[2] & c[1] & ~c[0]) | (c[3] & c[2] & c[1] & c[0]));
+	
+	assign display[5] = ~((~c[3] & ~c[2] & ~c[1] & ~c[0]) | (~c[3] & c[2] & ~c[1] & ~c[0]) | (~c[3] & c[2] & ~c[1] & c[0]) | (~c[3] & c[2] & c[1] & ~c[0]) | (c[3] & ~c[2] & ~c[1] & ~c[0]) | (c[3] & ~c[2] & ~c[1] & c[0]) | (c[3] & ~c[2] & c[1] & ~c[0]) | (c[3] & ~c[2] & c[1] & c[0]) | (c[3] & c[2] & ~c[1] & ~c[0]) | (c[3] & c[2] & c[1] & ~c[0]) | (c[3] & c[2] & c[1] & c[0]));
+	
+	assign display[6] = ~((~c[3] & ~c[2] & c[1] & ~c[0]) | (~c[3] & ~c[2] & c[1] & c[0]) | (~c[3] & c[2] & ~c[1] & ~c[0]) | (~c[3] & c[2] & ~c[1] & c[0]) | (~c[3] & c[2] & c[1] & ~c[0]) | (c[3] & ~c[2] & ~c[1] & ~c[0]) | (c[3] & ~c[2] & ~c[1] & c[0]) | (c[3] & ~c[2] & c[1] & ~c[0]) | (c[3] & ~c[2] & c[1] & c[0]) | (c[3] & c[2] & ~c[1] & c[0]) | (c[3] & c[2] & c[1] & ~c[0]) | (c[3] & c[2] & c[1] & c[0]));
+	
+endmodule

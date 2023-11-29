@@ -1,0 +1,762 @@
+Analysis & Synthesis report for handler
+Tue Nov 28 01:08:00 2023
+Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |handler|keyboard_decoder:kd|PS2_Controller:comb_3|s_ps2_transceiver
+  9. State Machine - |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter
+ 10. State Machine - |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver
+ 11. State Machine - |handler|mouse_decoder:md|curr_state
+ 12. State Machine - |handler|mouse_decoder:md|PS2_Controller:psm|s_ps2_transceiver
+ 13. State Machine - |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter
+ 14. State Machine - |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver
+ 15. User-Specified and Inferred Latches
+ 16. Registers Removed During Synthesis
+ 17. Removed Registers Triggering Further Register Optimizations
+ 18. General Register Statistics
+ 19. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 20. Parameter Settings for User Entity Instance: Top-level Entity: |handler
+ 21. Parameter Settings for User Entity Instance: mouse_decoder:md
+ 22. Parameter Settings for User Entity Instance: mouse_decoder:md|PS2_Controller:psm
+ 23. Parameter Settings for User Entity Instance: mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out
+ 24. Parameter Settings for User Entity Instance: keyboard_decoder:kd
+ 25. Parameter Settings for User Entity Instance: keyboard_decoder:kd|PS2_Controller:comb_3
+ 26. Parameter Settings for User Entity Instance: keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out
+ 27. Port Connectivity Checks: "keyboard_decoder:kd|PS2_Controller:comb_3"
+ 28. Port Connectivity Checks: "keyboard_decoder:kd"
+ 29. Port Connectivity Checks: "mouse_decoder:md|PS2_Controller:psm"
+ 30. Port Connectivity Checks: "mouse_decoder:md"
+ 31. Post-Synthesis Netlist Statistics for Top Partition
+ 32. Elapsed Time Per Partition
+ 33. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Tue Nov 28 01:08:00 2023       ;
+; Quartus Prime Version           ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
+; Revision Name                   ; handler                                     ;
+; Top-level Entity Name           ; handler                                     ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 235                                         ;
+; Total pins                      ; 30                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; handler            ; handler            ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 16          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-16        ;   0.0%      ;
++----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                             ;
++----------------------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path             ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                                                   ; Library ;
++----------------------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+; ../keyboard_decoder/keyboard_decoder.v       ; yes             ; User Verilog HDL File  ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/keyboard_decoder/keyboard_decoder.v       ;         ;
+; ../mouse_decoder/PS2_Controller.v            ; yes             ; User Verilog HDL File  ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/PS2_Controller.v            ;         ;
+; ../mouse_decoder/mouse_decoder.v             ; yes             ; User Verilog HDL File  ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v             ;         ;
+; ../mouse_decoder/Altera_UP_PS2_Data_In.v     ; yes             ; User Verilog HDL File  ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/Altera_UP_PS2_Data_In.v     ;         ;
+; ../mouse_decoder/Altera_UP_PS2_Command_Out.v ; yes             ; User Verilog HDL File  ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/Altera_UP_PS2_Command_Out.v ;         ;
+; peripheral_handler.v                         ; yes             ; User Verilog HDL File  ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/peripheral_handler.v   ;         ;
++----------------------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                 ;
++---------------------------------------------+---------------+
+; Resource                                    ; Usage         ;
++---------------------------------------------+---------------+
+; Estimate of Logic utilization (ALMs needed) ; 195           ;
+;                                             ;               ;
+; Combinational ALUT usage for logic          ; 320           ;
+;     -- 7 input functions                    ; 1             ;
+;     -- 6 input functions                    ; 64            ;
+;     -- 5 input functions                    ; 45            ;
+;     -- 4 input functions                    ; 34            ;
+;     -- <=3 input functions                  ; 176           ;
+;                                             ;               ;
+; Dedicated logic registers                   ; 235           ;
+;                                             ;               ;
+; I/O pins                                    ; 30            ;
+;                                             ;               ;
+; Total DSP Blocks                            ; 0             ;
+;                                             ;               ;
+; Maximum fan-out node                        ; CLOCK50~input ;
+; Maximum fan-out                             ; 204           ;
+; Total fan-out                               ; 2034          ;
+; Average fan-out                             ; 3.30          ;
++---------------------------------------------+---------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                     ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------+---------------------------+--------------+
+; Compilation Hierarchy Node                           ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                          ; Entity Name               ; Library Name ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------+---------------------------+--------------+
+; |handler                                             ; 320 (0)             ; 235 (0)                   ; 0                 ; 0          ; 30   ; 0            ; |handler                                                                                     ; handler                   ; work         ;
+;    |keyboard_decoder:kd|                             ; 122 (15)            ; 101 (11)                  ; 0                 ; 0          ; 0    ; 0            ; |handler|keyboard_decoder:kd                                                                 ; keyboard_decoder          ; work         ;
+;       |PS2_Controller:comb_3|                        ; 107 (7)             ; 90 (5)                    ; 0                 ; 0          ; 0    ; 0            ; |handler|keyboard_decoder:kd|PS2_Controller:comb_3                                           ; PS2_Controller            ; work         ;
+;          |Altera_UP_PS2_Command_Out:PS2_Command_Out| ; 84 (84)             ; 60 (60)                   ; 0                 ; 0          ; 0    ; 0            ; |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out ; Altera_UP_PS2_Command_Out ; work         ;
+;          |Altera_UP_PS2_Data_In:PS2_Data_In|         ; 16 (16)             ; 25 (25)                   ; 0                 ; 0          ; 0    ; 0            ; |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In         ; Altera_UP_PS2_Data_In     ; work         ;
+;    |mouse_decoder:md|                                ; 198 (55)            ; 134 (25)                  ; 0                 ; 0          ; 0    ; 0            ; |handler|mouse_decoder:md                                                                    ; mouse_decoder             ; work         ;
+;       |PS2_Controller:psm|                           ; 143 (24)            ; 109 (14)                  ; 0                 ; 0          ; 0    ; 0            ; |handler|mouse_decoder:md|PS2_Controller:psm                                                 ; PS2_Controller            ; work         ;
+;          |Altera_UP_PS2_Command_Out:PS2_Command_Out| ; 102 (102)           ; 69 (69)                   ; 0                 ; 0          ; 0    ; 0            ; |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out       ; Altera_UP_PS2_Command_Out ; work         ;
+;          |Altera_UP_PS2_Data_In:PS2_Data_In|         ; 17 (17)             ; 26 (26)                   ; 0                 ; 0          ; 0    ; 0            ; |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In               ; Altera_UP_PS2_Data_In     ; work         ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------+---------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |handler|keyboard_decoder:kd|PS2_Controller:comb_3|s_ps2_transceiver                                                                                                                                                                         ;
++--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
+; Name                                       ; s_ps2_transceiver.PS2_STATE_3_END_TRANSFER ; s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT ; s_ps2_transceiver.PS2_STATE_1_DATA_IN ; s_ps2_transceiver.PS2_STATE_0_IDLE ; s_ps2_transceiver.PS2_STATE_4_END_DELAYED ;
++--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
+; s_ps2_transceiver.PS2_STATE_0_IDLE         ; 0                                          ; 0                                         ; 0                                     ; 0                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_1_DATA_IN      ; 0                                          ; 0                                         ; 1                                     ; 1                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT  ; 0                                          ; 1                                         ; 0                                     ; 1                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_3_END_TRANSFER ; 1                                          ; 0                                         ; 0                                     ; 1                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_4_END_DELAYED  ; 0                                          ; 0                                         ; 0                                     ; 1                                  ; 1                                         ;
++--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter                                                                                                                                                                                                                                                                                                                      ;
++------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
+; Name                                                 ; s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR ; s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT ; s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT ; s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT ; s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA ; s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK ; s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION ; s_ps2_transmitter.PS2_STATE_0_IDLE ;
++------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
+; s_ps2_transmitter.PS2_STATE_0_IDLE                   ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 0                                  ;
+; s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 1                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK         ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 1                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA          ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 1                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT      ; 0                                                ; 0                                              ; 0                                             ; 1                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT        ; 0                                                ; 0                                              ; 1                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT       ; 0                                                ; 1                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR     ; 1                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
++------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver                                                                                                                    ;
++------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
+; Name                                     ; s_ps2_receiver.PS2_STATE_3_PARITY_IN ; s_ps2_receiver.PS2_STATE_2_DATA_IN ; s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA ; s_ps2_receiver.PS2_STATE_0_IDLE ; s_ps2_receiver.PS2_STATE_4_STOP_IN ;
++------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
+; s_ps2_receiver.PS2_STATE_0_IDLE          ; 0                                    ; 0                                  ; 0                                        ; 0                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA ; 0                                    ; 0                                  ; 1                                        ; 1                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_2_DATA_IN       ; 0                                    ; 1                                  ; 0                                        ; 1                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_3_PARITY_IN     ; 1                                    ; 0                                  ; 0                                        ; 1                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_4_STOP_IN       ; 0                                    ; 0                                  ; 0                                        ; 1                               ; 1                                  ;
++------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |handler|mouse_decoder:md|curr_state                                                                                         ;
++--------------------------+--------------------------+---------------------+-------------------+--------------------+-------------------------+
+; Name                     ; curr_state.S_ASSERT_WAIT ; curr_state.S_ASSERT ; curr_state.S_IDLE ; curr_state.S_RESET ; curr_state.S_RESET_WAIT ;
++--------------------------+--------------------------+---------------------+-------------------+--------------------+-------------------------+
+; curr_state.S_RESET       ; 0                        ; 0                   ; 0                 ; 0                  ; 0                       ;
+; curr_state.S_IDLE        ; 0                        ; 0                   ; 1                 ; 1                  ; 0                       ;
+; curr_state.S_ASSERT      ; 0                        ; 1                   ; 0                 ; 1                  ; 0                       ;
+; curr_state.S_ASSERT_WAIT ; 1                        ; 0                   ; 0                 ; 1                  ; 0                       ;
+; curr_state.S_RESET_WAIT  ; 0                        ; 0                   ; 0                 ; 1                  ; 1                       ;
++--------------------------+--------------------------+---------------------+-------------------+--------------------+-------------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |handler|mouse_decoder:md|PS2_Controller:psm|s_ps2_transceiver                                                                                                                                                                               ;
++--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
+; Name                                       ; s_ps2_transceiver.PS2_STATE_3_END_TRANSFER ; s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT ; s_ps2_transceiver.PS2_STATE_1_DATA_IN ; s_ps2_transceiver.PS2_STATE_0_IDLE ; s_ps2_transceiver.PS2_STATE_4_END_DELAYED ;
++--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
+; s_ps2_transceiver.PS2_STATE_0_IDLE         ; 0                                          ; 0                                         ; 0                                     ; 0                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_1_DATA_IN      ; 0                                          ; 0                                         ; 1                                     ; 1                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT  ; 0                                          ; 1                                         ; 0                                     ; 1                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_3_END_TRANSFER ; 1                                          ; 0                                         ; 0                                     ; 1                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_4_END_DELAYED  ; 0                                          ; 0                                         ; 0                                     ; 1                                  ; 1                                         ;
++--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter                                                                                                                                                                                                                                                                                                                            ;
++------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
+; Name                                                 ; s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR ; s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT ; s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT ; s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT ; s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA ; s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK ; s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION ; s_ps2_transmitter.PS2_STATE_0_IDLE ;
++------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
+; s_ps2_transmitter.PS2_STATE_0_IDLE                   ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 0                                  ;
+; s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 1                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK         ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 1                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA          ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 1                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT      ; 0                                                ; 0                                              ; 0                                             ; 1                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT        ; 0                                                ; 0                                              ; 1                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT       ; 0                                                ; 1                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR     ; 1                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
++------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver                                                                                                                          ;
++------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
+; Name                                     ; s_ps2_receiver.PS2_STATE_3_PARITY_IN ; s_ps2_receiver.PS2_STATE_2_DATA_IN ; s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA ; s_ps2_receiver.PS2_STATE_0_IDLE ; s_ps2_receiver.PS2_STATE_4_STOP_IN ;
++------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
+; s_ps2_receiver.PS2_STATE_0_IDLE          ; 0                                    ; 0                                  ; 0                                        ; 0                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA ; 0                                    ; 0                                  ; 1                                        ; 1                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_2_DATA_IN       ; 0                                    ; 1                                  ; 0                                        ; 1                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_3_PARITY_IN     ; 1                                    ; 0                                  ; 0                                        ; 1                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_4_STOP_IN       ; 0                                    ; 0                                  ; 0                                        ; 1                               ; 1                                  ;
++------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                              ;
++----------------------------------------------------+------------------------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal                ; Free of Timing Hazards ;
++----------------------------------------------------+------------------------------------+------------------------+
+; mouse_decoder:md|command_send                      ; mouse_decoder:md|curr_state.S_IDLE ; yes                    ;
+; mouse_decoder:md|command[0]                        ; mouse_decoder:md|WideOr0           ; yes                    ;
+; mouse_decoder:md|command[1]                        ; mouse_decoder:md|WideOr0           ; yes                    ;
+; mouse_decoder:md|command[3]                        ; mouse_decoder:md|WideOr0           ; yes                    ;
+; Number of user-specified and inferred latches = 4  ;                                    ;                        ;
++----------------------------------------------------+------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                                                                                    ;
++--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+; Register name                                                                                                                        ; Reason for Removal                                                                                             ;
++--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+; keyboard_decoder:kd|data_out[3]                                                                                                      ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|idle_counter[0..7]                                                                         ; Lost fanout                                                                                                    ;
+; mouse_decoder:md|PS2_Controller:psm|ps2_data_reg                                                                                     ; Merged with keyboard_decoder:kd|PS2_Controller:comb_3|ps2_data_reg                                             ;
+; mouse_decoder:md|PS2_Controller:psm|ps2_clk_reg                                                                                      ; Merged with keyboard_decoder:kd|PS2_Controller:comb_3|ps2_clk_reg                                              ;
+; mouse_decoder:md|PS2_Controller:psm|last_ps2_clk                                                                                     ; Merged with keyboard_decoder:kd|PS2_Controller:comb_3|last_ps2_clk                                             ;
+; mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[4..7]                                      ; Merged with mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[2]       ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[1..7]                                ; Merged with keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[0] ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[0]                                   ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|s_ps2_transceiver~2                                                                        ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|s_ps2_transceiver~3                                                                        ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~2                              ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~3                              ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~4                              ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~2                                         ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~3                                         ; Lost fanout                                                                                                    ;
+; mouse_decoder:md|curr_state~2                                                                                                        ; Lost fanout                                                                                                    ;
+; mouse_decoder:md|curr_state~3                                                                                                        ; Lost fanout                                                                                                    ;
+; mouse_decoder:md|curr_state~5                                                                                                        ; Lost fanout                                                                                                    ;
+; mouse_decoder:md|curr_state~6                                                                                                        ; Lost fanout                                                                                                    ;
+; mouse_decoder:md|PS2_Controller:psm|s_ps2_transceiver~2                                                                              ; Lost fanout                                                                                                    ;
+; mouse_decoder:md|PS2_Controller:psm|s_ps2_transceiver~3                                                                              ; Lost fanout                                                                                                    ;
+; mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~2                                    ; Lost fanout                                                                                                    ;
+; mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~3                                    ; Lost fanout                                                                                                    ;
+; mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~4                                    ; Lost fanout                                                                                                    ;
+; mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~2                                               ; Lost fanout                                                                                                    ;
+; mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~3                                               ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT                                                  ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|s_ps2_transceiver.PS2_STATE_4_END_DELAYED                                                  ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_was_sent                                 ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|error_communication_timed_out                    ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|s_ps2_transceiver.PS2_STATE_3_END_TRANSFER                                                 ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA                 ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_0_IDLE               ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT   ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR ; Lost fanout                                                                                                    ;
+; Total Number of Removed Registers = 51                                                                                               ;                                                                                                                ;
++--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                                                                                            ;
++-------------------------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+; Register name                                                                       ; Reason for Removal        ; Registers Removed due to This Register                                                                                               ;
++-------------------------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+; keyboard_decoder:kd|PS2_Controller:comb_3|idle_counter[3]                           ; Lost Fanouts              ; keyboard_decoder:kd|PS2_Controller:comb_3|idle_counter[4],                                                                           ;
+;                                                                                     ;                           ; keyboard_decoder:kd|PS2_Controller:comb_3|idle_counter[5],                                                                           ;
+;                                                                                     ;                           ; keyboard_decoder:kd|PS2_Controller:comb_3|idle_counter[6],                                                                           ;
+;                                                                                     ;                           ; keyboard_decoder:kd|PS2_Controller:comb_3|idle_counter[7]                                                                            ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|s_ps2_transceiver~2                       ; Lost Fanouts              ; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_was_sent,                                ;
+;                                                                                     ;                           ; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|error_communication_timed_out,                   ;
+;                                                                                     ;                           ; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT,  ;
+;                                                                                     ;                           ; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR ;
+; keyboard_decoder:kd|PS2_Controller:comb_3|s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT ; Stuck at GND              ; keyboard_decoder:kd|PS2_Controller:comb_3|s_ps2_transceiver.PS2_STATE_3_END_TRANSFER,                                                ;
+;                                                                                     ; due to stuck port data_in ; keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA                 ;
++-------------------------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 235   ;
+; Number of registers using Synchronous Clear  ; 181   ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 182   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|received_data[7]                     ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[3]                     ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data[6]                           ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |handler|keyboard_decoder:kd|previous_key[7]                                                                              ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |handler|keyboard_decoder:kd|data_out[0]                                                                                  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|data_shift_reg[0]                    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|data_shift_reg[1]                          ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |handler|mouse_decoder:md|x_pos[7]                                                                                        ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |handler|mouse_decoder:md|x_pos[6]                                                                                        ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |handler|mouse_decoder:md|y_pos[4]                                                                                        ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |handler|mouse_decoder:md|y_pos[0]                                                                                        ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[13] ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[20]          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|cur_bit[3]                   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[1]                        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |handler|mouse_decoder:md|PS2_Controller:psm|idle_counter[2]                                                              ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[13]       ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[13]                ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out|cur_bit[0]                         ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[0]                              ;
+; 4:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[3]          ;
+; 4:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |handler|mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[1]                ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |handler|keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |handler ;
++----------------+----------+---------------------------------------------+
+; Parameter Name ; Value    ; Type                                        ;
++----------------+----------+---------------------------------------------+
+; X_SIZE         ; 10100000 ; Unsigned Binary                             ;
+; Y_SIZE         ; 01111000 ; Unsigned Binary                             ;
++----------------+----------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mouse_decoder:md ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; X_MAX          ; 160   ; Signed Integer                       ;
+; Y_MAX          ; 120   ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mouse_decoder:md|PS2_Controller:psm ;
++------------------+-------+-------------------------------------------------------+
+; Parameter Name   ; Value ; Type                                                  ;
++------------------+-------+-------------------------------------------------------+
+; INITIALIZE_MOUSE ; 1     ; Signed Integer                                        ;
++------------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out ;
++------------------------------------+----------------------+----------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                           ;
++------------------------------------+----------------------+----------------------------------------------------------------+
+; CLOCK_CYCLES_FOR_101US             ; 5050                 ; Signed Integer                                                 ;
+; NUMBER_OF_BITS_FOR_101US           ; 13                   ; Signed Integer                                                 ;
+; COUNTER_INCREMENT_FOR_101US        ; 0000000000001        ; Unsigned Binary                                                ;
+; CLOCK_CYCLES_FOR_15MS              ; 750000               ; Signed Integer                                                 ;
+; NUMBER_OF_BITS_FOR_15MS            ; 20                   ; Signed Integer                                                 ;
+; COUNTER_INCREMENT_FOR_15MS         ; 00000000000000000001 ; Unsigned Binary                                                ;
+; CLOCK_CYCLES_FOR_2MS               ; 100000               ; Signed Integer                                                 ;
+; NUMBER_OF_BITS_FOR_2MS             ; 17                   ; Signed Integer                                                 ;
+; COUNTER_INCREMENT_FOR_2MS          ; 00000000000000001    ; Unsigned Binary                                                ;
+; PS2_STATE_0_IDLE                   ; 000                  ; Unsigned Binary                                                ;
+; PS2_STATE_1_INITIATE_COMMUNICATION ; 001                  ; Unsigned Binary                                                ;
+; PS2_STATE_2_WAIT_FOR_CLOCK         ; 010                  ; Unsigned Binary                                                ;
+; PS2_STATE_3_TRANSMIT_DATA          ; 011                  ; Unsigned Binary                                                ;
+; PS2_STATE_4_TRANSMIT_STOP_BIT      ; 100                  ; Unsigned Binary                                                ;
+; PS2_STATE_5_RECEIVE_ACK_BIT        ; 101                  ; Unsigned Binary                                                ;
+; PS2_STATE_6_COMMAND_WAS_SENT       ; 110                  ; Unsigned Binary                                                ;
+; PS2_STATE_7_TRANSMISSION_ERROR     ; 111                  ; Unsigned Binary                                                ;
++------------------------------------+----------------------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: keyboard_decoder:kd ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; X_SIZE         ; 160   ; Signed Integer                          ;
+; Y_SIZE         ; 120   ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: keyboard_decoder:kd|PS2_Controller:comb_3 ;
++------------------+-------+-------------------------------------------------------------+
+; Parameter Name   ; Value ; Type                                                        ;
++------------------+-------+-------------------------------------------------------------+
+; INITIALIZE_MOUSE ; 0     ; Signed Integer                                              ;
++------------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: keyboard_decoder:kd|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out ;
++------------------------------------+----------------------+----------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                                 ;
++------------------------------------+----------------------+----------------------------------------------------------------------+
+; CLOCK_CYCLES_FOR_101US             ; 5050                 ; Signed Integer                                                       ;
+; NUMBER_OF_BITS_FOR_101US           ; 13                   ; Signed Integer                                                       ;
+; COUNTER_INCREMENT_FOR_101US        ; 0000000000001        ; Unsigned Binary                                                      ;
+; CLOCK_CYCLES_FOR_15MS              ; 750000               ; Signed Integer                                                       ;
+; NUMBER_OF_BITS_FOR_15MS            ; 20                   ; Signed Integer                                                       ;
+; COUNTER_INCREMENT_FOR_15MS         ; 00000000000000000001 ; Unsigned Binary                                                      ;
+; CLOCK_CYCLES_FOR_2MS               ; 100000               ; Signed Integer                                                       ;
+; NUMBER_OF_BITS_FOR_2MS             ; 17                   ; Signed Integer                                                       ;
+; COUNTER_INCREMENT_FOR_2MS          ; 00000000000000001    ; Unsigned Binary                                                      ;
+; PS2_STATE_0_IDLE                   ; 000                  ; Unsigned Binary                                                      ;
+; PS2_STATE_1_INITIATE_COMMUNICATION ; 001                  ; Unsigned Binary                                                      ;
+; PS2_STATE_2_WAIT_FOR_CLOCK         ; 010                  ; Unsigned Binary                                                      ;
+; PS2_STATE_3_TRANSMIT_DATA          ; 011                  ; Unsigned Binary                                                      ;
+; PS2_STATE_4_TRANSMIT_STOP_BIT      ; 100                  ; Unsigned Binary                                                      ;
+; PS2_STATE_5_RECEIVE_ACK_BIT        ; 101                  ; Unsigned Binary                                                      ;
+; PS2_STATE_6_COMMAND_WAS_SENT       ; 110                  ; Unsigned Binary                                                      ;
+; PS2_STATE_7_TRANSMISSION_ERROR     ; 111                  ; Unsigned Binary                                                      ;
++------------------------------------+----------------------+----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "keyboard_decoder:kd|PS2_Controller:comb_3"                                                                                                                            ;
++-------------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port                          ; Type   ; Severity ; Details                                                                                                                                      ;
++-------------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; the_command                   ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; send_command                  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; command_was_sent              ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; error_communication_timed_out ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++-------------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "keyboard_decoder:kd"                                                                                                                                                      ;
++----------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                                                                               ;
++----------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; data_out ; Output ; Warning  ; Output or bidir port (4 bits) is smaller than the port expression (8 bits) it drives.  The 4 most-significant bit(s) in the port expression will be connected to GND. ;
++----------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mouse_decoder:md|PS2_Controller:psm"                                                                         ;
++-------------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                          ; Type   ; Severity ; Details                                                                             ;
++-------------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; the_command[7..4]             ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; the_command[2]                ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; error_communication_timed_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mouse_decoder:md"                                                                          ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; received_en ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 235                         ;
+;     ENA               ; 32                          ;
+;     ENA SCLR          ; 150                         ;
+;     SCLR              ; 31                          ;
+;     plain             ; 22                          ;
+; arriav_io_obuf        ; 2                           ;
+; arriav_lcell_comb     ; 321                         ;
+;     arith             ; 126                         ;
+;         1 data inputs ; 110                         ;
+;         3 data inputs ; 16                          ;
+;     extend            ; 1                           ;
+;         7 data inputs ; 1                           ;
+;     normal            ; 194                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 3                           ;
+;         2 data inputs ; 23                          ;
+;         3 data inputs ; 24                          ;
+;         4 data inputs ; 34                          ;
+;         5 data inputs ; 45                          ;
+;         6 data inputs ; 64                          ;
+; boundary_port         ; 30                          ;
+;                       ;                             ;
+; Max LUT depth         ; 3.00                        ;
+; Average LUT depth     ; 2.16                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+    Info: Processing started: Tue Nov 28 01:07:48 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off peripheral_handler -c handler
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 3 design units, including 3 entities, in source file /users/wikid/onedrive - university of toronto/ece241/final project/keyboard_decoder/keyboard_decoder.v
+    Info (12023): Found entity 1: keyboard_decoder File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/keyboard_decoder/keyboard_decoder.v Line: 1
+    Info (12023): Found entity 2: keyboard_mapper File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/keyboard_decoder/keyboard_decoder.v Line: 54
+    Info (12023): Found entity 3: hex_decoder File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/keyboard_decoder/keyboard_decoder.v Line: 72
+Info (12021): Found 1 design units, including 1 entities, in source file /users/wikid/onedrive - university of toronto/ece241/final project/mouse_decoder/vga_pll.v
+    Info (12023): Found entity 1: vga_pll File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/vga_pll.v Line: 36
+Info (12021): Found 1 design units, including 1 entities, in source file /users/wikid/onedrive - university of toronto/ece241/final project/mouse_decoder/vga_controller.v
+    Info (12023): Found entity 1: vga_controller File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/vga_controller.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file /users/wikid/onedrive - university of toronto/ece241/final project/mouse_decoder/vga_address_translator.v
+    Info (12023): Found entity 1: vga_address_translator File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/vga_address_translator.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file /users/wikid/onedrive - university of toronto/ece241/final project/mouse_decoder/vga_adapter.v
+    Info (12023): Found entity 1: vga_adapter File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/vga_adapter.v Line: 78
+Info (12021): Found 1 design units, including 1 entities, in source file /users/wikid/onedrive - university of toronto/ece241/final project/mouse_decoder/ps2_controller.v
+    Info (12023): Found entity 1: PS2_Controller File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/PS2_Controller.v Line: 9
+Info (12021): Found 2 design units, including 2 entities, in source file /users/wikid/onedrive - university of toronto/ece241/final project/mouse_decoder/mouse_decoder.v
+    Info (12023): Found entity 1: mouse_mapper File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 1
+    Info (12023): Found entity 2: mouse_decoder File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file /users/wikid/onedrive - university of toronto/ece241/final project/mouse_decoder/fill.v
+    Info (12023): Found entity 1: cursor_handler File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/fill.v Line: 173
+Info (12021): Found 1 design units, including 1 entities, in source file /users/wikid/onedrive - university of toronto/ece241/final project/mouse_decoder/altera_up_ps2_data_in.v
+    Info (12023): Found entity 1: Altera_UP_PS2_Data_In File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/Altera_UP_PS2_Data_In.v Line: 10
+Info (12021): Found 1 design units, including 1 entities, in source file /users/wikid/onedrive - university of toronto/ece241/final project/mouse_decoder/altera_up_ps2_command_out.v
+    Info (12023): Found entity 1: Altera_UP_PS2_Command_Out File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/Altera_UP_PS2_Command_Out.v Line: 10
+Info (12021): Found 2 design units, including 2 entities, in source file peripheral_handler.v
+    Info (12023): Found entity 1: handler File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/peripheral_handler.v Line: 1
+    Info (12023): Found entity 2: peripheral_handler File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/peripheral_handler.v Line: 17
+Info (12021): Found 1 design units, including 1 entities, in source file bram.v
+    Info (12023): Found entity 1: bram File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/bram.v Line: 39
+Warning (10463): Verilog HDL Declaration warning at pseudo_rng.v(16): "rand" is SystemVerilog-2005 keyword File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/pseudo_rng.v Line: 16
+Info (12021): Found 2 design units, including 2 entities, in source file pseudo_rng.v
+    Info (12023): Found entity 1: prng File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/pseudo_rng.v Line: 1
+    Info (12023): Found entity 2: ratedivider File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/pseudo_rng.v Line: 14
+Critical Warning (10846): Verilog HDL Instantiation warning at keyboard_decoder.v(10): instance has no name File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/keyboard_decoder/keyboard_decoder.v Line: 10
+Info (12127): Elaborating entity "handler" for the top level hierarchy
+Info (12128): Elaborating entity "mouse_decoder" for hierarchy "mouse_decoder:md" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/peripheral_handler.v Line: 13
+Warning (10240): Verilog HDL Always Construct warning at mouse_decoder.v(50): inferring latch(es) for variable "command", which holds its previous value in one or more paths through the always construct File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+Warning (10240): Verilog HDL Always Construct warning at mouse_decoder.v(50): inferring latch(es) for variable "command_send", which holds its previous value in one or more paths through the always construct File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+Warning (10230): Verilog HDL assignment warning at mouse_decoder.v(116): truncated value with size 32 to match size of target (8) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 116
+Warning (10230): Verilog HDL assignment warning at mouse_decoder.v(118): truncated value with size 32 to match size of target (8) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 118
+Warning (10034): Output port "mouse_click" at mouse_decoder.v(28) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 28
+Warning (10034): Output port "received_en" at mouse_decoder.v(30) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 30
+Info (10041): Inferred latch for "command_send" at mouse_decoder.v(50) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+Info (10041): Inferred latch for "command[0]" at mouse_decoder.v(50) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+Info (10041): Inferred latch for "command[1]" at mouse_decoder.v(50) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+Info (10041): Inferred latch for "command[2]" at mouse_decoder.v(50) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+Info (10041): Inferred latch for "command[3]" at mouse_decoder.v(50) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+Info (10041): Inferred latch for "command[4]" at mouse_decoder.v(50) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+Info (10041): Inferred latch for "command[5]" at mouse_decoder.v(50) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+Info (10041): Inferred latch for "command[6]" at mouse_decoder.v(50) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+Info (10041): Inferred latch for "command[7]" at mouse_decoder.v(50) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+Info (12128): Elaborating entity "PS2_Controller" for hierarchy "mouse_decoder:md|PS2_Controller:psm" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 125
+Warning (10230): Verilog HDL assignment warning at PS2_Controller.v(62): truncated value with size 32 to match size of target (1) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/PS2_Controller.v Line: 62
+Warning (10230): Verilog HDL assignment warning at PS2_Controller.v(63): truncated value with size 32 to match size of target (1) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/PS2_Controller.v Line: 63
+Info (12128): Elaborating entity "Altera_UP_PS2_Data_In" for hierarchy "mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/PS2_Controller.v Line: 246
+Info (12128): Elaborating entity "Altera_UP_PS2_Command_Out" for hierarchy "mouse_decoder:md|PS2_Controller:psm|Altera_UP_PS2_Command_Out:PS2_Command_Out" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/PS2_Controller.v Line: 266
+Info (12128): Elaborating entity "keyboard_decoder" for hierarchy "keyboard_decoder:kd" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/peripheral_handler.v Line: 14
+Warning (10272): Verilog HDL Case Statement warning at keyboard_decoder.v(43): case item expression covers a value already covered by a previous case item File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/keyboard_decoder/keyboard_decoder.v Line: 43
+Info (12128): Elaborating entity "PS2_Controller" for hierarchy "keyboard_decoder:kd|PS2_Controller:comb_3" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/keyboard_decoder/keyboard_decoder.v Line: 10
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "mouse_decoder:md|command[1]" merged with LATCH primitive "mouse_decoder:md|command[0]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+    Info (13026): Duplicate LATCH primitive "mouse_decoder:md|command[3]" merged with LATCH primitive "mouse_decoder:md|command[0]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+Warning (13012): Latch mouse_decoder:md|command[0] has unsafe behavior File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 50
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal mouse_decoder:md|curr_state.S_ASSERT File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/mouse_decoder/mouse_decoder.v Line: 41
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "MOUSE_CLICK" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/peripheral_handler.v Line: 7
+    Warning (13410): Pin "KEY_PRESSED[3]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/peripheral_handler.v Line: 8
+    Warning (13410): Pin "KEY_PRESSED[4]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/peripheral_handler.v Line: 8
+    Warning (13410): Pin "KEY_PRESSED[5]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/peripheral_handler.v Line: 8
+    Warning (13410): Pin "KEY_PRESSED[6]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/peripheral_handler.v Line: 8
+    Warning (13410): Pin "KEY_PRESSED[7]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/peripheral_handler.v Line: 8
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 30 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "MOUSE_MODE" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/peripheral_handler/peripheral_handler.v Line: 4
+Info (21057): Implemented 398 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 25 output pins
+    Info (21060): Implemented 2 bidirectional pins
+    Info (21061): Implemented 368 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 24 warnings
+    Info: Peak virtual memory: 4910 megabytes
+    Info: Processing ended: Tue Nov 28 01:08:01 2023
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:11
+
+

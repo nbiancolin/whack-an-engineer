@@ -1,0 +1,197 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'mouse_decoder:m0|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data_en'
+Slack : -5.307
+TNS   : -89.718
+
+Type  : Slow 1100mV 85C Model Setup 'mouse_decoder:m0|curr_state.S_IDLE'
+Slack : -4.573
+TNS   : -4.573
+
+Type  : Slow 1100mV 85C Model Setup 'CLOCK50'
+Slack : -4.422
+TNS   : -236.831
+
+Type  : Slow 1100mV 85C Model Setup 'mouse_decoder:m0|curr_state.S_ASSERT'
+Slack : -1.165
+TNS   : -1.165
+
+Type  : Slow 1100mV 85C Model Hold 'CLOCK50'
+Slack : 0.228
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'mouse_decoder:m0|curr_state.S_ASSERT'
+Slack : 0.443
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'mouse_decoder:m0|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data_en'
+Slack : 0.468
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'mouse_decoder:m0|curr_state.S_IDLE'
+Slack : 3.234
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK50'
+Slack : -0.394
+TNS   : -62.195
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'mouse_decoder:m0|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data_en'
+Slack : -0.394
+TNS   : -10.499
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'mouse_decoder:m0|curr_state.S_IDLE'
+Slack : 0.403
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'mouse_decoder:m0|curr_state.S_ASSERT'
+Slack : 0.469
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Setup 'mouse_decoder:m0|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data_en'
+Slack : -5.391
+TNS   : -91.448
+
+Type  : Slow 1100mV 0C Model Setup 'mouse_decoder:m0|curr_state.S_IDLE'
+Slack : -4.594
+TNS   : -4.594
+
+Type  : Slow 1100mV 0C Model Setup 'CLOCK50'
+Slack : -4.032
+TNS   : -226.416
+
+Type  : Slow 1100mV 0C Model Setup 'mouse_decoder:m0|curr_state.S_ASSERT'
+Slack : -1.173
+TNS   : -1.173
+
+Type  : Slow 1100mV 0C Model Hold 'CLOCK50'
+Slack : 0.219
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'mouse_decoder:m0|curr_state.S_ASSERT'
+Slack : 0.463
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'mouse_decoder:m0|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data_en'
+Slack : 0.479
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'mouse_decoder:m0|curr_state.S_IDLE'
+Slack : 3.204
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK50'
+Slack : -0.394
+TNS   : -66.457
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'mouse_decoder:m0|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data_en'
+Slack : -0.394
+TNS   : -10.436
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'mouse_decoder:m0|curr_state.S_IDLE'
+Slack : 0.388
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'mouse_decoder:m0|curr_state.S_ASSERT'
+Slack : 0.454
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Setup 'CLOCK50'
+Slack : -3.739
+TNS   : -111.455
+
+Type  : Fast 1100mV 85C Model Setup 'mouse_decoder:m0|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data_en'
+Slack : -2.686
+TNS   : -44.556
+
+Type  : Fast 1100mV 85C Model Setup 'mouse_decoder:m0|curr_state.S_IDLE'
+Slack : -2.059
+TNS   : -2.059
+
+Type  : Fast 1100mV 85C Model Setup 'mouse_decoder:m0|curr_state.S_ASSERT'
+Slack : -0.376
+TNS   : -0.376
+
+Type  : Fast 1100mV 85C Model Hold 'CLOCK50'
+Slack : 0.133
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'mouse_decoder:m0|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data_en'
+Slack : 0.171
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'mouse_decoder:m0|curr_state.S_ASSERT'
+Slack : 0.359
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'mouse_decoder:m0|curr_state.S_IDLE'
+Slack : 1.768
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK50'
+Slack : -0.380
+TNS   : -9.542
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'mouse_decoder:m0|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data_en'
+Slack : 0.095
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'mouse_decoder:m0|curr_state.S_ASSERT'
+Slack : 0.441
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'mouse_decoder:m0|curr_state.S_IDLE'
+Slack : 0.474
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'CLOCK50'
+Slack : -3.016
+TNS   : -90.217
+
+Type  : Fast 1100mV 0C Model Setup 'mouse_decoder:m0|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data_en'
+Slack : -2.550
+TNS   : -42.664
+
+Type  : Fast 1100mV 0C Model Setup 'mouse_decoder:m0|curr_state.S_IDLE'
+Slack : -1.944
+TNS   : -1.944
+
+Type  : Fast 1100mV 0C Model Setup 'mouse_decoder:m0|curr_state.S_ASSERT'
+Slack : -0.303
+TNS   : -0.303
+
+Type  : Fast 1100mV 0C Model Hold 'CLOCK50'
+Slack : 0.121
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'mouse_decoder:m0|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data_en'
+Slack : 0.161
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'mouse_decoder:m0|curr_state.S_ASSERT'
+Slack : 0.321
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'mouse_decoder:m0|curr_state.S_IDLE'
+Slack : 1.690
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK50'
+Slack : -0.403
+TNS   : -9.735
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'mouse_decoder:m0|PS2_Controller:psm|Altera_UP_PS2_Data_In:PS2_Data_In|received_data_en'
+Slack : 0.114
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'mouse_decoder:m0|curr_state.S_ASSERT'
+Slack : 0.453
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'mouse_decoder:m0|curr_state.S_IDLE'
+Slack : 0.469
+TNS   : 0.000
+
+------------------------------------------------------------

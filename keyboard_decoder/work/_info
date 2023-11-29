@@ -1,0 +1,90 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/keyboard_decoder
+vhex_decoder
+Z1 !s110 1701237650
+!i10b 1
+!s100 MZQT]S9`Mckg5gTzc<O]P2
+Im1<6VWoYJ665IenoRN6lm2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1701237112
+Z4 8keyboard_decoder.v
+Z5 Fkeyboard_decoder.v
+L0 87
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1701237650.000000
+Z8 !s107 keyboard_decoder.v|
+Z9 !s90 -reportprogress|300|keyboard_decoder.v|
+!i113 1
+Z10 tCvgOpt 0
+vkeyboard_decoder
+R1
+!i10b 1
+!s100 QLgORjV91JPD6kOSi6@@i0
+I9XJnED6NVY^2=6VK08aTe1
+R2
+R0
+R3
+R4
+R5
+L0 3
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vkeyboard_mapper
+R1
+!i10b 1
+!s100 KC9<acYJ0Az^>LD@@N1C]0
+IdGR27`jeh_kNdN4DcLYi11
+R2
+R0
+R3
+R4
+R5
+L0 68
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vperipheral_divider
+R1
+!i10b 1
+!s100 8SDTG3A515P:eVHkA9IE=1
+IDiZSFZ@_mc`?Na3ecD4_W2
+R2
+R0
+R3
+R4
+R5
+L0 107
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
