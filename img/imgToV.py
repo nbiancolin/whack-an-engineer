@@ -17,8 +17,8 @@ Set these to be the counter values used in your box drawing code.
 (xProgress, xCounter, count[1:0] / count[3:2], etc)
 '''
 
-XCOUNT = 'oX'
-YCOUNT = 'oY'
+XCOUNT = 'xProgress'
+YCOUNT = 'yProgress'
 
 
 def get_colour(x,y): #also deprecated
@@ -97,11 +97,11 @@ if __name__ == "__main__":
     #f.write("# this code assumes clock is labelled as \' clk \'\n\n")
 
     f.write("# your counter registers should be of the following size:\n")
-    f.write("# reg xCount[")
-    f.write(str(math.ceil(xReg)))
+    f.write("# reg xProgress[")
+    f.write(str(math.ceil(xReg)-1))
     f.write(":0];\n")
-    f.write("# reg yCount[")
-    f.write(str(math.ceil(yReg)))
+    f.write("# reg yProgress[")
+    f.write(str(math.ceil(yReg)-1))
     f.write(":0];\n\n")
 
     f.write("you should be sure to set your x and y limits to ")
