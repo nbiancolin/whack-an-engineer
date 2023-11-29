@@ -1,20 +1,24 @@
-#Code that takes in a picture of a thing, and writes out instructions for it to be printed with a verilog module.
-
 '''
-basically, the way this works,
-module can only print one pixel at a time,
-so, using x and y counter (assume they are being updated every clock cycle accordingly)
-for each pixel in the image, write verilog code that sets the correct colour for the given pixel
+imgToV
+(c) 2023 Nicholas Biancolin - All Rights Reserved
+
+
+Takes in an image file, spits out a text file that enables you to draw your provided picture 
+(by drawing a box with the same dimensions as your image)
 '''
 
 from PIL import Image
 import math
 import argparse
 
+''' 
+** GLOBAL VARIABLES **
+Set these to be the counter values used in your box drawing code. 
+(xProgress, xCounter, count[1:0] / count[3:2], etc)
+'''
+
 XCOUNT = 'oX'
 YCOUNT = 'oY'
-
-
 
 
 def get_colour(x,y): #also deprecated
@@ -79,26 +83,33 @@ if __name__ == "__main__":
     args = parser.parse_args()    
 
     openImage(args.filename)
-
+    #print(args.filename)
 
     xReg = math.log2(size[0])
     yReg = math.log2(size[1])
     
 
     #beginning file stuff
-    f = open("./output/{args.filename}.txt", "w")
+    file = args.filename + ".txt"
+    f = open(file, "w")
+    #f = open("output.txt", "w")
     f.write("# imgToV Converter\n")
     #f.write("# this code assumes clock is labelled as \' clk \'\n\n")
 
     f.write("# your counter registers should be of the following size:\n")
-    f.write("# reg xCount[ ")
+    f.write("# reg xCount[")
     f.write(str(math.ceil(xReg)))
-    f.write(": 0];\n")
-    f.write("# reg yCount[ ")
+    f.write(":0];\n")
+    f.write("# reg yCount[")
     f.write(str(math.ceil(yReg)))
-    f.write(": 0];\n\n")
+    f.write(":0];\n\n")
 
-    f.write("you should be sure to set your x and y limits to {size[0]} and {size[1]} respectively\n")
+    f.write("you should be sure to set your x and y limits to ")
+    f.write(str(size[0]))
+    f.write(" and ")
+    f.write(str(size[1]))
+    f.write(" respectively\n")
+    f.write("Use this code with your lab 7 part 2 module, just be sure to change the limit from being a 4 x 4 square to the above limits\n")
 
     f.write("comment out any lines of code that set colour, and place this after your counters are updated\n\n")
 
@@ -117,7 +128,7 @@ if __name__ == "__main__":
             f.write("\n")
             temp = col
     
-    print("Output is stored in ./output/{args.filename}.txt")
+    print("Output is stored in " + args.filename + ".txt")
     print("(in same folder as this script!)")
     print(" ** IMPORTANT **")
     print("ensure to set the \"XCOUNT\" and \"YCOUNT\" global variables at the top of the python file to match your iteration variables" )
