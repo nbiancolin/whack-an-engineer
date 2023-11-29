@@ -16,7 +16,6 @@ module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, curr
                 GAMEOVER        = 3'd4;
 
     reg gameOver; //if gameEnd and INGAME, then move onto GAMEOVER state
-    // STILL VARIABLE"S CODE NEED TO BE ADDED
 
     //these are variables associated with startGame
     wire moleMiss;
@@ -69,19 +68,23 @@ module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, curr
         if (reset) begin
             scoreReset <= 1;
             enableCountdown <= 0;
+            gameOver <= 1;
         end else begin
             case(current_state) 
                 STARTGAME: begin
                     enableCountdown <= 0;
                     score_reset <= 1;
+                    gameOver <= 1;
                 end
                 INGAME: begin
                     enableCountdown <= 1;
                     score_reset <= 0;
+                    gameOver <= 0;
                 end
                 GAMEOVER: begin
                     enableCountdown <= 0;
                     score_reset <= 1;
+                    gameOver <= 1;
                 end
             endcase
             // A LOT OF CODE STILL NEEDS TO BE ADDED HERE
