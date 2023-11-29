@@ -63,8 +63,8 @@ def openImage(img):
 
 
 def generate_color_condition(x, y, col):
-    condition = f"if({XCOUNT} == {x} and {YCOUNT} == {y})"
-    condition += " color <= "
+    condition = f"if({XCOUNT} == 8'd{x} and 'd{YCOUNT} == {y})"
+    condition += " color <= 3'b"
     condition += col
     condition += ";"
 
