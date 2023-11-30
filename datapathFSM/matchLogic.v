@@ -4,10 +4,10 @@ module matchLogic(clock,molesGenerated, hit, moleHit, moleMiss);
     //5 moles in total
     //each binary bit represents if a mole is generated. 
     //for example 01001 means the first and fourth are 
-    input molesGenerated[4:0];
+    input [4:0] molesGenerated;
     //can only hit one mole at a time
     //000 means no hit, 001 = first mole, 110 = fifth mole
-    input hit[2:0];
+    input [2:0] hit;
 
     //if a mole is hit. 1 means first hole mole is hit. 5 means fifth hole mole hit
     output reg [2:0] moleHit;
@@ -22,11 +22,11 @@ module matchLogic(clock,molesGenerated, hit, moleHit, moleMiss);
     always @(hit) begin
         case(hit)
             3'b000: hitMask = 5'b00000; //no hits
-            3'b000: hitMask = 5'b00001; //first mole hit
-            3'b000: hitMask = 5'b00010;
-            3'b000: hitMask = 5'b00100;
-            3'b000: hitMask = 5'b01000;
-            3'b000: hitMask = 5'b10000; //fifth mole hit
+            3'b001: hitMask = 5'b00001; //first mole hit
+            3'b010: hitMask = 5'b00010;
+            3'b011: hitMask = 5'b00100;
+            3'b100: hitMask = 5'b01000;
+            3'b101: hitMask = 5'b10000; //fifth mole hit
             default: hitMask = 5'b00000;
         endcase
     end
@@ -34,11 +34,10 @@ module matchLogic(clock,molesGenerated, hit, moleHit, moleMiss);
     //update output variables here
     always @(posedge clock) begin
         if ((molesGenerated & hitMask) == 0) begin 
-            //that means either missed or not hit at all
-            moleMiss <= hitMask? 0 : 1;
+            moleMiss <= (molesGenerated & hitMask) == 0 && hitMask? 1 : 0;
             moleHit <= 0;
-        end 
-        else begin
+            //something still wrong with moleHit, not reverting
+        end else begin
             //else would be ran for successful mole hit 
             moleMiss <= 0;
             moleHit <= hit;
