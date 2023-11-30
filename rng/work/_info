@@ -1,0 +1,30 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/rng
+vpseudo_rng
+!s110 1701375555
+!i10b 1
+!s100 3F1OjgOI:N0RAeYb;h?_z2
+IKYT5lh:gC8o?5PJ]7FFg13
+VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1701375523
+8pseudo_rng.v
+Fpseudo_rng.v
+L0 3
+OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1701375555.000000
+!s107 pseudo_rng.v|
+!s90 -reportprogress|300|pseudo_rng.v|
+!i113 1
+tCvgOpt 0
