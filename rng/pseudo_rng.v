@@ -31,6 +31,7 @@ module pseudo_rng(clock, reset, generateEn, output_data);
 			3'b010: output_data <= 5'b00100;
 			3'b011: output_data <= 5'b01000;
 			3'b100: output_data <= 5'b10000;
+			default: output_data <= 'b0;
 		endcase
 	end
 endmodule
