@@ -33,9 +33,9 @@ module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, curr
 
     generateMoles u1(.clock(clock), .enable(moleHit != 5'b00000 || current_state == STARTGAME), .molesGenerated(molesGenerated));
     matchLogic u0(.clock(clock), .molesGenerated(molesGenerated), .hit(userGameInput), .moleHit(moleHit), .moleMiss(moleMiss));
-
-    countdownTimer u2(clock, scoreReset, enableCountdown, gameEnd, currentCountDown);
-    scoreKeeper u3(clock, scoreReset, moleHit, score);
+    
+    countdownTimer u2(.clock(clock), .enableCountdown(enableCountdown), .socreReset(scoreReset), .gameEnd(gameEnd), .currentCountDown(currentCountDown));
+    scoreKeeper u3(.clock(clock), .scoreReset(scoreReset), .moleHit(moleHit), .score(score));
 
     //main FSM part of the code
     always @(posedge clock or posedge reset) begin
