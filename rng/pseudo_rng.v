@@ -1,3 +1,5 @@
+`timescale 1ns / 1ns // `timescale time_unit/time_precision
+
 module pseudo_rng(clock, reset, generateEn, output_data);
 	// pseudo rng relying on fast clocks
 	input clock, reset, generateEn;
@@ -21,7 +23,7 @@ module pseudo_rng(clock, reset, generateEn, output_data);
 	end
 	
 	always@(posedge generateEn) begin
-		temp_data = counter % 6; // 0-5
+		temp_data = counter % 5; // 0-4
 		
 		case(temp_data) // one hot encoding
 			3'b000: output_data <= 5'b00001;
