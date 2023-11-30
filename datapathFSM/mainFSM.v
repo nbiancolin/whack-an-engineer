@@ -1,13 +1,13 @@
 module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, current_state);
 //5 registers, each one 2 bits, 4 states, onscreen, hit, miss, offscreen
     input clock;
-    input reset; //from Jason -- reset
-    input startGame; //startGame //from Jason -- allow startGame state
-    input [2:0] userGameInput; //which mole currently getting hit //from Jason
+    input reset; 
+    input startGame; 
+    input [2:0] userGameInput; //which mole currently getting hit
 
 
-    output reg [2:0] current_state, 
-    output reg [4:0] molesGenerated;
+    output reg [2:0] current_state;
+    output wire [4:0] molesGenerated;
 
     reg [2:0] next_state;
     localparam  IDLE            = 3'd0,
@@ -19,22 +19,28 @@ module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, curr
     reg gameOver; //if gameEnd and INGAME, then move onto GAMEOVER state
 
     //these are variables associated with startGame
-    wire moleMiss;
     wire [5:0] currentCountDown;
-    wire gameStart;
     wire gameEnd; // when countDown hits 0, this enables
     wire [7:0] score; //score tracker
     //the following 2 will enable when first reach gameState
-    wire moleHit[2:0]; // if user successfully hit a mole, display position of mole hit
+    wire [2:0] moleHit; // if user successfully hit a mole, display position of mole hit
     wire moleMiss; // if user missed the mole
     reg enableCountdown;
     reg scoreReset;
     //functions associated with startGame
-
-    generateMoles u1(.clock(clock), .reset(scoreReset), .enable(moleHit != 5'b00000 || current_state == STARTGAME), .molesGenerated(molesGenerated));
+    wire enableMolesRate;
+    wire enableMolesGen;
+    localparam generationRate = 1;
+    RateDivider #(.CLOCK_FREQUENCY(50000000 / generationRate)) rateDU1(
+        .ClockIn(clock),
+        .Reset(scoreReset), 
+        .enable(enableMolesRate)
+    );
+    assign enableMolesGen = (current_state == INGAME) ? enableMolesRate : 1'b0;
+    generateMoles u1(.clock(clock), .reset(scoreReset), .enable(enableMolesGen), .molesGenerated(molesGenerated));
     matchLogic u0(.clock(clock), .molesGenerated(molesGenerated), .hit(userGameInput), .moleHit(moleHit), .moleMiss(moleMiss));
     
-    countdownTimer u2(.clock(clock), .enableCountdown(enableCountdown), .socreReset(scoreReset), .gameEnd(gameEnd), .currentCountDown(currentCountDown));
+    countdownTimer u2(.clock(clock), .enableCountdown(enableCountdown), .scoreReset(scoreReset), .gameEnd(gameEnd), .currentCountDown(currentCountDown));
     scoreKeeper u3(.clock(clock), .scoreReset(scoreReset), .moleHit(moleHit), .score(score));
 
     //main FSM part of the code
@@ -58,7 +64,7 @@ module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, curr
             //this stage allows for game to start, reset counter and score
             next_state = INGAME;
         INGAME:
-            next_state = gameOver? GAMEOVER: INGAME;
+            next_state = gameEnd? GAMEOVER: INGAME;
         GAMEOVER:
             next_state = reset? IDLE : GAMEOVER;
         default:
@@ -76,17 +82,17 @@ module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, curr
             case(current_state) 
                 STARTGAME: begin
                     enableCountdown <= 0;
-                    score_reset <= 1;
+                    scoreReset <= 1;
                     gameOver <= 1;
                 end
                 INGAME: begin
                     enableCountdown <= 1;
-                    score_reset <= 0;
+                    scoreReset <= 0;
                     gameOver <= 0;
                 end
                 GAMEOVER: begin
                     enableCountdown <= 0;
-                    score_reset <= 1;
+                    scoreReset <= 1;
                     gameOver <= 1;
                 end
             endcase
