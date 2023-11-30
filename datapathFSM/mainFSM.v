@@ -31,7 +31,7 @@ module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, curr
     reg scoreReset;
     //functions associated with startGame
 
-    generateMoles u1(.clock(clock), .enable(moleHit != 5'b00000 || current_state == STARTGAME), .molesGenerated(molesGenerated));
+    generateMoles u1(.clock(clock), .reset(scoreReset), .enable(moleHit != 5'b00000 || current_state == STARTGAME), .molesGenerated(molesGenerated));
     matchLogic u0(.clock(clock), .molesGenerated(molesGenerated), .hit(userGameInput), .moleHit(moleHit), .moleMiss(moleMiss));
     
     countdownTimer u2(.clock(clock), .enableCountdown(enableCountdown), .socreReset(scoreReset), .gameEnd(gameEnd), .currentCountDown(currentCountDown));
