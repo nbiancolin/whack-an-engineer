@@ -1,0 +1,12 @@
+module rng_mapper(CLOCK50, SW, LEDR, KEY);
+	input CLOCK50;
+	input [9:0] SW;
+	input [3:0] KEY;
+	output [9:0] LEDR;
+	
+	wire [4:0] data_out;
+	assign LEDR[4:0] = data_out[4:0];
+	
+	pseudo_rng(clock, press_generate, address, output_data, reset);
+	
+endmodule

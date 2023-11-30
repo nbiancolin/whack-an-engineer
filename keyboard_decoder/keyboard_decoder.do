@@ -21,12 +21,18 @@ run 40 ns
 force {pressed_temp} 0
 run 40 ns
 
-force data_temp 11110000
+force data_temp 00100111
 run 40 ns
 
 force data_temp 00011010
 force {pressed_temp} 1
 run 40 ns
 
-force data_temp 11111111
+force data_temp 11110000
+run 40 ns
+
+force data_temp 00011010
+run 40 ns
+
+force data_temp 11100110
 run 40 ns

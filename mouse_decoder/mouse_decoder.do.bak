@@ -19,3 +19,6 @@ run 40 ns
 
 force {resetn} 0
 run 40 ns
+
+force state_d 10
+run 40 ns
