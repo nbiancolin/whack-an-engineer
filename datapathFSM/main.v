@@ -31,7 +31,7 @@ module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, curr
     wire enableMolesRate;
     wire enableMolesGen;
     localparam generationRate = 1;
-    RateDivider #(.CLOCK_FREQUENCY(50000000 / generationRate)) rateDU1(
+    RateDivider #(.CLOCK_FREQUENCY(10 / generationRate)) rateDU1(
         .ClockIn(clock),
         .Reset(scoreReset), 
         .enable(enableMolesRate)
@@ -179,6 +179,7 @@ module generateMoles (clock, reset, enable, molesGenerated);
     pseudo_rng gen(.clock(clock), .reset(reset), .generateEn(enable), .output_data(molesGenerated));
 endmodule
 
+/*
 module pseudo_rng(clock, reset, generateEn, output_data);
 	// pseudo rng relying on fast clocks
 	input clock, reset, generateEn;
@@ -214,6 +215,46 @@ module pseudo_rng(clock, reset, generateEn, output_data);
 		endcase
     end
 endmodule
+*/
+
+module pseudo_rng(clock, reset, generateEn, output_data);
+    input clock, reset, generateEn;
+    output reg [4:0] output_data;
+
+    reg [2:0] temp_data;
+    parameter uppermax = $clog2(10000000);
+    reg [uppermax -1:0] counter;
+
+    always @(posedge clock or posedge reset) begin
+        if (reset) begin
+            counter <= 0;
+            output_data <= 5'b00000;
+        end else begin
+            if (counter < 10000000 - 1) // counter to go from 0 to 9999999
+                counter <= counter + 1;
+            else
+                counter <= 0;
+
+            // This is where we check if generateEn is high and update output_data
+            if (generateEn) begin
+                temp_data <= counter [2:0]; // Taking the 3 LSBs for the RNG
+                case(temp_data) // one hot encoding
+                    3'b000: output_data <= 5'b00001;
+                    3'b001: output_data <= 5'b00010;
+                    3'b010: output_data <= 5'b00100;
+                    3'b011: output_data <= 5'b01000;
+                    3'b100: output_data <= 5'b10000;
+                    3'b011: output_data <= 5'b00100;
+                    3'b110: output_data <= 5'b10010;
+                    3'b101: output_data <= 5'b01000;
+                    3'b111: output_data <= 5'b00001;
+                    default: output_data <= 5'b00000;
+                endcase
+            end
+        end
+    end
+endmodule
+
 
 module countdownTimer (
     input clock,
@@ -224,7 +265,7 @@ module countdownTimer (
 );
     wire reachedOneSec;
 
-    RateDivider #(.CLOCK_FREQUENCY(50000000)) div0 (
+    RateDivider #(.CLOCK_FREQUENCY(50)) div0 (
         .ClockIn(clock),
         .Reset(scoreReset),
         .enable(reachedOneSec)
@@ -237,7 +278,6 @@ module countdownTimer (
         .gameEnd(gameEnd),
         .currentCountDown(currentCountDown)
     );
-
 endmodule
 
 module counter (
@@ -269,7 +309,7 @@ module counter (
 endmodule
 
 module RateDivider 
-#(parameter CLOCK_FREQUENCY = 50000000)
+#(parameter CLOCK_FREQUENCY = 10)
 (
     input ClockIn,
     input Reset,
