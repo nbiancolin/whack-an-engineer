@@ -62,8 +62,9 @@ def openImage(img):
     #print(pix[5,5])
 
 
-def generate_color_condition(x, y, col):
-    condition = f"if({XCOUNT} == 8'd{x} and 'd{YCOUNT} == {y})"
+def generate_color_condition(x, y, col, flag):
+    if (not flag): condition = f"else if({XCOUNT} == {x} && {YCOUNT} == {y})"
+    else: condition = f"if({XCOUNT} == {x} && {YCOUNT} == {y})"
     condition += " color <= 3'b"
     condition += col
     condition += ";"
@@ -114,6 +115,7 @@ if __name__ == "__main__":
     f.write("comment out any lines of code that set colour, and place this after your counters are updated\n\n")
 
     temp = "orange juice"
+    flag = True
     for y in range(size[1]):
         for x in range(size[0]):
             #print(get_colour(i,j))
@@ -122,7 +124,8 @@ if __name__ == "__main__":
             
             #method of condensing code, if colour remains the same, no colour change needed
             if(temp == col): continue
-            res = generate_color_condition(x,y, col)
+            res = generate_color_condition(x,y, col, flag)
+            flag = False
             f.write("\t")
             f.write(res)
             f.write("\n")
