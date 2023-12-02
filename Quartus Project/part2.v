@@ -34,7 +34,7 @@ module vgaHelper(iResetn, hhSelect, hhState, clk, oX, oY, oColour, oPlot, oDone)
     localparam  P_RST       = 3'd0,     //draws over initial screen (from mif or with plot algo)
                 RST         = 3'd1,     //waiting for input to start game
                 W_LOADING   = 3'd2,     //waiting for release of input button
-                P_HH        = 3'd3,     //plots hh's on screen for waiting for start (one each second, returning to W_LOADING after the first two, then going to)
+                P_HH        = 3'd3,     //TODO: Change this state to be the end of game state (triggered by eric's signal), have it wait a sec then go back to P_RST
                 P_GAME      = 3'd4,     //plots full screen (whether it be from mif or full colour)
                 GAME        = 3'd5,     //waits for input
                 W_GAME      = 3'd6,		//state / etc are stored here;
