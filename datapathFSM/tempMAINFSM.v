@@ -416,7 +416,7 @@ module counter (
 endmodule
 
 module RateDivider 
-#(parameter CLOCK_FREQUENCY = 10)
+#(parameter CLOCK_FREQUENCY = 50000000)
 (
     input ClockIn,
     input Reset,

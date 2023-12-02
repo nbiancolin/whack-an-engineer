@@ -41,33 +41,48 @@ module hex_decoder(c, display);
 endmodule
 
 
-module newPart2(SW, KEY, HEX0, HEX2, HEX4, HEX5);
+module newPart2(MAX10_CLK1_50, SW, KEY, LEDR, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5);
+    input MAX10_CLK1_50;
 	input [7:0] SW;
     input [1:0] KEY;
-	output [7:0] HEX0, HEX2, HEX4, HEX5;
+	output [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
+	output [9:0] LEDR;
+
+    wire [2:0] current_state;
+    wire [5:0] currentCountDown;
+    wire [7:0] score;
+	 wire [4:0] molesGenerated;
 
     wire [3:0] res, carry;
-    mainDataPath U1(.a(SW[3:0]), .b(SW[7:4]), .c_in(1'b0), .s(res), .c_out(carry));
+    mainDataPath U1(.clock(MAX10_CLK1_50), .reset(~KEY[0]), .startGame(~KEY[1]), .userGameInput(SW[2:0]), .molesGenerated(molesGenerated), .current_state(LEDR[9:7]), .currentCountDown(currentCountDown), .score(score), .moleHit(LEDR[5]));
+
+    hex_decoder h0(currentCountDown[3:0], HEX0);
+    hex_decoder h1({2'b00, currentCountDown[5:4]}, HEX1);
+	 hex_decoder h2(molesGenerated[3:0], HEX2);
+	 hex_decoder h3({3'b000, molesGenerated[4]}, HEX3);
+    hex_decoder h4(score[3:0], HEX4);
+    hex_decoder h5(score[7:4], HEX5);
 	 
-	 reg [7:0] temp;  
+	//  reg [7:0] temp;
 	 
 	
-	hex_decoder viewA(SW[3:0], HEX0[7:0]);
-	hex_decoder viewB(SW[7:4], HEX2[7:0]);
+
+	// hex_decoder viewA(SW[3:0], HEX0[6:0]);
+	// hex_decoder viewB(SW[7:4], HEX2[6:0]);
     
-    always@(*)
-    begin
-        case (~{KEY[1:0]})
-        2'b00: temp <= {3'b000, carry[3], res};
-        2'b01: temp <= |{SW[7:0]};
-        2'b10: temp <= &{SW[7:0]};
-        2'b11: temp <= {SW[7:0]};
-        default: temp <= 8'b00000000; 
-        endcase
-    end
+    // always@(*)
+    // begin
+    //     case (~{KEY[1:0]})
+    //     2'b00: temp <= {3'b000, carry[3], res};
+    //     2'b01: temp <= |{SW[7:0]};
+    //     2'b10: temp <= &{SW[7:0]};
+    //     2'b11: temp <= {SW[7:0]};
+    //     default: temp <= 8'b00000000; 
+    //     endcase
+    // end
 	 
-	 hex_decoder viewO1(temp[3:0], HEX4[7:0]);
-	 hex_decoder viewO2(temp[7:4], HEX5[7:0]);
+	//  hex_decoder viewO1(temp[3:0], HEX4[7:0]);
+	//  hex_decoder viewO2(temp[7:4], HEX5[7:0]);
 endmodule
 
 
@@ -104,7 +119,7 @@ module mainDataPath(clock, reset, startGame, userGameInput, molesGenerated, curr
     wire enableMolesRate;
     wire enableMolesGen;
     localparam generationRate = 1;
-    RateDivider #(.CLOCK_FREQUENCY(10 / generationRate)) rateDU1(
+    RateDivider #(.CLOCK_FREQUENCY(50000000)) rateDU1(
         .ClockIn(clock),
         .Reset(scoreReset), 
         .enable(enableMolesRate)
@@ -405,19 +420,19 @@ module pseudo_rng(clock, reset, generateEn, output_data);
     parameter uppermax = $clog2(10000000);
     reg [uppermax -1:0] counter;
 
-    always @(posedge clock or posedge reset) begin
+    always @(posedge clock) begin
         if (reset) begin
             counter <= 0;
             output_data <= 5'b00000;
         end else begin
-            if (counter < 10000000 - 1) // counter to go from 0 to 9999999
+            if (counter < 15634256 - 1) // counter to go from 0 to 9999999
                 counter <= counter + 1;
             else
                 counter <= 0;
 
             // This is where we check if generateEn is high and update output_data
             if (generateEn) begin
-                temp_data <= counter [2:0]; // Taking the 3 LSBs for the RNG
+                temp_data <= counter % 5; // Taking the 3 LSBs for the RNG
                 case(temp_data) // one hot encoding
                     3'b000: output_data <= 5'b00001;
                     3'b001: output_data <= 5'b00010;
@@ -496,9 +511,9 @@ module RateDivider
     output enable
 );
     reg [27:0] internalCount;
-    always @(posedge ClockIn or posedge Reset) begin
+    always @(posedge ClockIn) begin
 
-        if (Reset || internalCount == 0) begin
+        if (Reset || internalCount == 28'b0) begin
 
             internalCount <= CLOCK_FREQUENCY - 1;
         end else begin
