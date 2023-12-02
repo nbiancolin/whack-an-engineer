@@ -1,0 +1,40 @@
+how this should all work:
+
+have "reset" be the screen with the sprites
+
+on reset, go to rest state (draws title over screen)
+
+on button press, go to "game state" (draws sprites over screen)
+
+pushing one of 2 buttons changes sprites to "hit" sprites, then after 0.5 s goes back to regular sprites
+
+reset goes back to rest state
+
+
+
+
+
+
+==== FSM STATES ====
+
+
+(RESET) -> Reset all variables
+(DRAW REST) -> Draw reset variables
+(REST) -> splash screen
+(LOADING) -> excuse to clear the screen and reset (purely for optics)
+(DRAW_HATS) -> draw full screen of hats
+(GAME_STEADY) -> waiting for updates to draw hats
+(HIT_HAT) -> hat is ready to be hit
+(HIT) -> hat is hit
+(GAME_OVER) -> Displays game over  (updates "high score" reg)
+
+
+
+== SIMPLIDIED FSM == (for testing)
+
+(RESET) -> reset all variables
+(LOADING) -> Clears screen (minus tape measure)
+(DRAW_GAME) -> draws full game screen
+(G_STEADY) -> waits for one of 3 buttons to go to next state
+(G_HIT) -> draws the hat that has been hit
+(G_RESET) -> Draws hat back to original

@@ -1,0 +1,24 @@
+Hard Hat top starting coords
+
+(going cw starting with top-most one)
+
+
+ONE: 
+X_1 = 47
+Y_1 = 15
+
+TWO:
+X_2 = 97
+Y_2 = 31
+
+THREE:
+X_3 = 126
+Y_3 = 63
+
+FOUR:
+X_4 = 67
+Y_4 = 82
+
+FIVE: 
+X_5 = 10
+Y_5 = 53

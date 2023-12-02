@@ -1,0 +1,92 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dW:/Project Shennanigans/VGA testing
+vcolourSelect
+Z1 !s110 1701469388
+!i10b 1
+!s100 CS^kooHTb^3?H`V`^SRSG1
+IGS3>=lX57`O<19TcZO7jn0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dW:/Project Shennanigans/VGA Testing
+Z4 w1701469383
+Z5 8part2.v
+Z6 Fpart2.v
+L0 310
+Z7 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z8 !s108 1701469388.000000
+Z9 !s107 part2.v|
+Z10 !s90 -reportprogress|300|part2.v|
+!i113 1
+Z11 tCvgOpt 0
+ncolour@select
+vg_steady
+!s110 1701464346
+!i10b 1
+!s100 dGg>1cQ^o3XSR3B;5T`>a3
+I[kFJl5HA_Vb3P23Y?EVFj2
+R2
+R0
+w1701462424
+8g_steady.v
+Fg_steady.v
+Z12 L0 39
+R7
+r1
+!s85 0
+31
+Z13 !s108 1701464344.000000
+Z14 !s107 g_steady.v|splash.v|part2.v|
+Z15 !s90 -reportprogress|300|part2.v|splash.v|g_steady.v|
+!i113 1
+R11
+vsplash
+!s110 1701464345
+!i10b 1
+!s100 T>2QG9Yjeo0[CB0V:L]Ko0
+Io@6fBb3J2Ub2WBAZW]D8j2
+R2
+R0
+w1701385369
+8splash.v
+Fsplash.v
+R12
+R7
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 1
+R11
+vvgaHelper
+R1
+!i10b 1
+!s100 `G0Ua3mcC_b2L9AzA9S9<3
+IddlePN@3h5[f?[5W>CJI<3
+R2
+R3
+R4
+R5
+R6
+L0 1
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+nvga@helper
