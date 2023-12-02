@@ -29,4 +29,13 @@ run 10 ns;
 force hhState 3'b010;
 run 10ns;
 force hhState 3'b000;
-run 20000ns;
+run 5000ns;
+
+force hhSelect 5'b00100; #select 3th hat
+force hhState 3'b100;
+run 10ns;
+force hhState 3'b000;
+run 5000ns;
+
+force hhSelect 5'b11111; #temp end of game signal
+run 50000ns;

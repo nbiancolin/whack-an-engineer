@@ -33,12 +33,13 @@ module vgaHelper(iResetn, hhSelect, hhState, clk, oX, oY, oColour, oPlot, oDone)
 
     localparam  P_RST       = 3'd0,     //draws over initial screen (from mif or with plot algo)
                 RST         = 3'd1,     //waiting for input to start game
-                W_LOADING   = 3'd2,     //waiting for release of input button
-                P_HH        = 3'd3,     //plots hh's on screen for waiting for start (one each second, returning to W_LOADING after the first two, then going to)
-                P_GAME      = 3'd4,     //plots full screen (whether it be from mif or full colour)
-                GAME        = 3'd5,     //waits for input
-                W_GAME      = 3'd6,		//state / etc are stored here;
-                P_HH_GAME   = 3'd7;		//draws hh at right spot
+                W_LOADING   = 3'd2,     //waiting for release of input button #WILL BE REMOVED WHEN ERIC'S CODE IS SET UP (to account for drawing the reset state)
+                //P_HH        = 3'd3,   #DEPRECATED     //plots hh's on screen for waiting for start (one each second, returning to W_LOADING after the first two, then going to) 
+                P_GAME      = 3'd3,     //plots full screen (whether it be from mif or full colour)
+                GAME        = 3'd4,     //waits for input
+                W_GAME      = 3'd5,		//state / etc are stored here;
+                P_HH_GAME   = 3'd6,		//draws hh at right spot
+                GAME_OVER   = 3'd7;
 
     localparam  HH_1 = 5'b00001, //assuming only one switch is on at any given point
                 HH_2 = 5'b00010, //for switches
@@ -90,7 +91,7 @@ reset should re-draw start screen
 	colourSelect c0(.clk(clk), .resetn(iResetn), .xProgress(xProgress), .yProgress(yProgress), .selector(stoHHState), .color(hhCol)); //handles what colour should be outputted
 
 	
-	splash s0(.address(address), .clock(clk), .data(3'b000), .wren(1'b0), .q(splashCol));
+	splash s0(.address(address), .clock(clk), .data(3'b000), .wren(1'b0), .q(splashCol)); //memory stuff
 	g_steady g0(.address(address), .clock(clk), .data(3'b000), .wren(1'b0), .q(gSteadyCol));
 	
     always@(*) begin
@@ -99,22 +100,20 @@ reset should re-draw start screen
             nextState <= oDone ? RST : P_RST;
         RST:
             nextState <= (hhState == HH_HIT) ? W_LOADING : RST;
-        W_LOADING:
-            nextState <= (hhState == 3'b000 && counter == 0) ? P_GAME : W_LOADING;
-        P_HH: begin
-			if(|loading) //bitwise or, so if any of the bits are 1, this evaluates to true
-				if(oDone) nextState <= W_LOADING;
-				else nextState <= P_HH;
-			else nextState <= P_GAME; 
-		end
+        W_LOADING: 
+            nextState <= (hhState == 3'b000) ? P_GAME : W_LOADING;
 		P_GAME:
 			nextState <= oDone ? GAME : P_GAME;
-		GAME:
-			nextState <= (|hhState) ? W_GAME : GAME;
+		GAME: begin
+            if(|hhState) nextState <= W_GAME;
+			else if (&hhSelect) nextState <= GAME_OVER;
+        end
 		W_GAME: //might remove this later when integrating with Eric's code;
 			nextState <= (|hhState) ?  W_GAME: P_HH_GAME;
 		P_HH_GAME:
 			nextState <= oDone ? GAME : P_HH_GAME;
+        GAME_OVER:
+            nextState <= (counter == 0) ? P_RST : GAME_OVER;
 		endcase
     end
 
@@ -172,14 +171,14 @@ reset should re-draw start screen
 				//Xsize <= X_HH -1;
 				//Ysize <= Y_HH -1;
 				//probably other shit
-				counter <= counter -1;
+				//counter <= counter -1;
 				selector <= 2'b11; // (this should select a colourful one
                 oDone <= 0;
                 address <= 0;
                 xProgress <= 0;
                 yProgress <= 0;
 			end
-			P_HH: begin
+			/* P_HH: begin
 				counter <= CLOCK_FREQ;
 				oColour <= hhCol;
 				if (!oDone) begin
@@ -206,8 +205,8 @@ reset should re-draw start screen
             end else begin
                 oDone <= 1;
                 loading = loading -1; 
-            end
-			end
+            end 
+			end */
 			P_GAME: begin
 			//plot code that uses memory
                 oColour <= gSteadyCol;
@@ -241,6 +240,7 @@ reset should re-draw start screen
 			GAME: begin
 				oDone <= 0;//does anything acc happen in this state
 				yProgress <= 0;
+                counter <= CLOCK_FREQ;
 			end
 			W_GAME: begin
 				stoHHState <= hhState;
@@ -299,6 +299,7 @@ reset should re-draw start screen
                 end
 				end
 				end
+            GAME_OVER: counter <= counter -1;
 			endcase
 		end
 	end
