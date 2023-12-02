@@ -1,6 +1,0 @@
-Shit I have todo:
-
-Generate splash screen mif //check
-Generate starting game screen mif (make new one at home tn) //check (with old pic but same difference
-
-generate colours for hard hats (python script)
