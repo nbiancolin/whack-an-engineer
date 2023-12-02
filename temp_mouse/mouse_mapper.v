@@ -1,10 +1,13 @@
-module mouse_mapper(KEY, SW, CLOCK_50, PS2_CLK, PS2_DAT, LEDR, HEX3, HEX2, HEX1, HEX0);
+module mouse_mapper(KEY, SW, CLOCK_50, PS2_CLK, PS2_DAT, LEDR, HEX3, HEX2, HEX1, HEX0, VGA_CLK, VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N, VGA_R, VGA_G, VGA_B);
 	input [3:0] KEY;
 	input [9:0] SW;
 	input CLOCK_50;
 	inout PS2_CLK, PS2_DAT;
 	output [9:0] LEDR;
 	output [6:0] HEX3, HEX2, HEX1, HEX0;
+
+	output VGA_CLK, VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N;
+	output [7:0] VGA_R, VGA_G, VGA_B;
 
 	wire leftclick;
 	wire [8:0] x, y;
@@ -15,6 +18,8 @@ module mouse_mapper(KEY, SW, CLOCK_50, PS2_CLK, PS2_DAT, LEDR, HEX3, HEX2, HEX1,
 	hex_decoder h1(x[7:4], HEX1);
 	hex_decoder h2(y[3:0], HEX2);
 	hex_decoder h3(y[7:4], HEX3);
+
+	cursor_handler ch(CLOCK_50, ~KEY[0], SW[0], VGA_CLK, VGA_HS, VGA_VS, VGA_BLANK_N, VGA_SYNC_N, VGA_R, VGA_G, VGA_B, x, y);
 	
 endmodule
 
