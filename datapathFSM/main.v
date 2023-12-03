@@ -226,15 +226,34 @@ module scoreKeeper (clock, scoreReset, moleHit, score);
     input [2:0] moleHit;
     output reg [7:0] score;
 
+    reg [10:0] tempScore;
+    wire reachedOneSec;
+
+    //another rate divider
+    RateDivider #(.CLOCK_FREQUENCY(50)) div0 (
+        .ClockIn(clock),
+        .Reset(scoreReset),
+        .enable(reachedOneSec)
+    );
+
     initial begin
         score = 8'b00000000;
+        tempScore = 8'b0;
     end
 
     always @(posedge clock or posedge scoreReset) begin
         if (scoreReset) begin
             score <= 0;
-        end else if (moleHit > 0) begin
-            score <= score + 1;  //default, change it sto FSM with states later
+            tempScore <= 0;
+        end
+        else if (reachedOneSec) begin
+            if (tempScore) begin
+                score <= score + 1;
+                tempScore <= 0;
+            end
+        end
+         else if (moleHit > 0) begin
+            tempScore <= tempScore + 1;  //default, change it sto FSM with states later
         end
     end
 endmodule
@@ -293,11 +312,11 @@ module pseudo_rng(clock, reset, generateEn, output_data, hitMask, moleHit);
             //output_data <= output_data & ~hitMask;
         end
     end
-    always @(posedge clock) begin
-        if (moleHit != 3'b000) begin
-            output_data <= 5'b00000;
-        end
-    end
+    // always @(posedge clock) begin
+    //     if (moleHit != 3'b000) begin
+    //         output_data <= 5'b00000;
+    //     end
+    // end
 endmodule
 
 
