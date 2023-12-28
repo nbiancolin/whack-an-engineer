@@ -1,0 +1,1303 @@
+Analysis & Synthesis report for whack_an_engineer
+Mon Dec 04 00:52:25 2023
+Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|s_ps2_transceiver
+  9. State Machine - |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter
+ 10. State Machine - |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Parameter Settings for User Entity Instance: keyboard_decoder:kb
+ 17. Parameter Settings for User Entity Instance: keyboard_decoder:kb|PS2_Controller:comb_3
+ 18. Parameter Settings for User Entity Instance: keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out
+ 19. Parameter Settings for User Entity Instance: mainDataPath:dp|RateDivider:rateDU1
+ 20. Parameter Settings for User Entity Instance: mainDataPath:dp|generateMoles:u1|pseudo_rng:gen
+ 21. Parameter Settings for User Entity Instance: mainDataPath:dp|countdownTimer:u2|RateDivider:div0
+ 22. Parameter Settings for User Entity Instance: mainDataPath:dp|scoreKeeper:u3|RateDivider:div0
+ 23. Parameter Settings for Inferred Entity Instance: mainDataPath:dp|generateMoles:u1|pseudo_rng:gen|lpm_divide:Mod0
+ 24. Port Connectivity Checks: "hex_decoder:h5"
+ 25. Port Connectivity Checks: "hex_decoder:h3"
+ 26. Port Connectivity Checks: "hex_decoder:h2"
+ 27. Port Connectivity Checks: "hex_decoder:h1"
+ 28. Port Connectivity Checks: "hex_decoder:h0"
+ 29. Port Connectivity Checks: "mainDataPath:dp|matchLogic:u0"
+ 30. Port Connectivity Checks: "mainDataPath:dp"
+ 31. Port Connectivity Checks: "keyboard_decoder:kb|PS2_Controller:comb_3"
+ 32. Port Connectivity Checks: "keyboard_decoder:kb"
+ 33. Post-Synthesis Netlist Statistics for Top Partition
+ 34. Elapsed Time Per Partition
+ 35. Analysis & Synthesis Messages
+ 36. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Mon Dec 04 00:52:25 2023       ;
+; Quartus Prime Version           ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
+; Revision Name                   ; whack_an_engineer                           ;
+; Top-level Entity Name           ; whack_an_engineer                           ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 196                                         ;
+; Total pins                      ; 99                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; whack_an_engineer  ; whack_an_engineer  ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 16          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-16        ;   0.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                        ;
++--------------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path     ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                                ; Library ;
++--------------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------------------------------------------------------+---------+
+; fsm_primary/inLab.v                  ; yes             ; User Verilog HDL File        ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v                  ;         ;
+; ps2_core/PS2_Controller.v            ; yes             ; User Verilog HDL File        ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/ps2_core/PS2_Controller.v            ;         ;
+; ps2_core/Altera_UP_PS2_Data_In.v     ; yes             ; User Verilog HDL File        ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/ps2_core/Altera_UP_PS2_Data_In.v     ;         ;
+; ps2_core/Altera_UP_PS2_Command_Out.v ; yes             ; User Verilog HDL File        ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/ps2_core/Altera_UP_PS2_Command_Out.v ;         ;
+; keyboard_decoder/keyboard_decoder.v  ; yes             ; User Verilog HDL File        ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/keyboard_decoder/keyboard_decoder.v  ;         ;
+; whack_an_engineer.v                  ; yes             ; User Verilog HDL File        ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v                  ;         ;
+; hex_decoder.v                        ; yes             ; User Verilog HDL File        ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/hex_decoder.v                        ;         ;
+; lpm_divide.tdf                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.0/quartus/libraries/megafunctions/lpm_divide.tdf                                                       ;         ;
+; abs_divider.inc                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.0/quartus/libraries/megafunctions/abs_divider.inc                                                      ;         ;
+; sign_div_unsign.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.0/quartus/libraries/megafunctions/sign_div_unsign.inc                                                  ;         ;
+; aglobal180.inc                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.0/quartus/libraries/megafunctions/aglobal180.inc                                                       ;         ;
+; db/lpm_divide_l3m.tdf                ; yes             ; Auto-Generated Megafunction  ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/db/lpm_divide_l3m.tdf                ;         ;
+; db/sign_div_unsign_olh.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/db/sign_div_unsign_olh.tdf           ;         ;
+; db/alt_u_div_mve.tdf                 ; yes             ; Auto-Generated Megafunction  ; C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/db/alt_u_div_mve.tdf                 ;         ;
++--------------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                  ;
++---------------------------------------------+----------------+
+; Resource                                    ; Usage          ;
++---------------------------------------------+----------------+
+; Estimate of Logic utilization (ALMs needed) ; 254            ;
+;                                             ;                ;
+; Combinational ALUT usage for logic          ; 470            ;
+;     -- 7 input functions                    ; 0              ;
+;     -- 6 input functions                    ; 35             ;
+;     -- 5 input functions                    ; 53             ;
+;     -- 4 input functions                    ; 80             ;
+;     -- <=3 input functions                  ; 302            ;
+;                                             ;                ;
+; Dedicated logic registers                   ; 196            ;
+;                                             ;                ;
+; I/O pins                                    ; 99             ;
+;                                             ;                ;
+; Total DSP Blocks                            ; 0              ;
+;                                             ;                ;
+; Maximum fan-out node                        ; CLOCK_50~input ;
+; Maximum fan-out                             ; 196            ;
+; Total fan-out                               ; 2268           ;
+; Average fan-out                             ; 2.61           ;
++---------------------------------------------+----------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                           ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+--------------+
+; Compilation Hierarchy Node                           ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                ; Entity Name               ; Library Name ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+--------------+
+; |whack_an_engineer                                   ; 470 (0)             ; 196 (0)                   ; 0                 ; 0          ; 99   ; 0            ; |whack_an_engineer                                                                                                                                                 ; whack_an_engineer         ; work         ;
+;    |hex_decoder:h0|                                  ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|hex_decoder:h0                                                                                                                                  ; hex_decoder               ; work         ;
+;    |hex_decoder:h1|                                  ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|hex_decoder:h1                                                                                                                                  ; hex_decoder               ; work         ;
+;    |hex_decoder:h2|                                  ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|hex_decoder:h2                                                                                                                                  ; hex_decoder               ; work         ;
+;    |hex_decoder:h3|                                  ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|hex_decoder:h3                                                                                                                                  ; hex_decoder               ; work         ;
+;    |hex_decoder:h5|                                  ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|hex_decoder:h5                                                                                                                                  ; hex_decoder               ; work         ;
+;    |keyboard_decoder:kb|                             ; 126 (17)            ; 102 (12)                  ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|keyboard_decoder:kb                                                                                                                             ; keyboard_decoder          ; work         ;
+;       |PS2_Controller:comb_3|                        ; 109 (6)             ; 90 (5)                    ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3                                                                                                       ; PS2_Controller            ; work         ;
+;          |Altera_UP_PS2_Command_Out:PS2_Command_Out| ; 87 (87)             ; 60 (60)                   ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out                                                             ; Altera_UP_PS2_Command_Out ; work         ;
+;          |Altera_UP_PS2_Data_In:PS2_Data_In|         ; 16 (16)             ; 25 (25)                   ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In                                                                     ; Altera_UP_PS2_Data_In     ; work         ;
+;    |mainDataPath:dp|                                 ; 313 (7)             ; 94 (5)                    ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|mainDataPath:dp                                                                                                                                 ; mainDataPath              ; work         ;
+;       |RateDivider:rateDU1|                          ; 54 (54)             ; 28 (28)                   ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|mainDataPath:dp|RateDivider:rateDU1                                                                                                             ; RateDivider               ; work         ;
+;       |countdownTimer:u2|                            ; 11 (0)              ; 7 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|mainDataPath:dp|countdownTimer:u2                                                                                                               ; countdownTimer            ; work         ;
+;          |counter:cnt0|                              ; 11 (11)             ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|mainDataPath:dp|countdownTimer:u2|counter:cnt0                                                                                                  ; counter                   ; work         ;
+;       |generateMoles:u1|                             ; 212 (0)             ; 32 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|mainDataPath:dp|generateMoles:u1                                                                                                                ; generateMoles             ; work         ;
+;          |pseudo_rng:gen|                            ; 212 (38)            ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|mainDataPath:dp|generateMoles:u1|pseudo_rng:gen                                                                                                 ; pseudo_rng                ; work         ;
+;             |lpm_divide:Mod0|                        ; 174 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|mainDataPath:dp|generateMoles:u1|pseudo_rng:gen|lpm_divide:Mod0                                                                                 ; lpm_divide                ; work         ;
+;                |lpm_divide_l3m:auto_generated|       ; 174 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|mainDataPath:dp|generateMoles:u1|pseudo_rng:gen|lpm_divide:Mod0|lpm_divide_l3m:auto_generated                                                   ; lpm_divide_l3m            ; work         ;
+;                   |sign_div_unsign_olh:divider|      ; 174 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|mainDataPath:dp|generateMoles:u1|pseudo_rng:gen|lpm_divide:Mod0|lpm_divide_l3m:auto_generated|sign_div_unsign_olh:divider                       ; sign_div_unsign_olh       ; work         ;
+;                      |alt_u_div_mve:divider|         ; 174 (174)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|mainDataPath:dp|generateMoles:u1|pseudo_rng:gen|lpm_divide:Mod0|lpm_divide_l3m:auto_generated|sign_div_unsign_olh:divider|alt_u_div_mve:divider ; alt_u_div_mve             ; work         ;
+;       |matchLogic:u0|                                ; 5 (5)               ; 3 (3)                     ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|mainDataPath:dp|matchLogic:u0                                                                                                                   ; matchLogic                ; work         ;
+;       |scoreKeeper:u3|                               ; 24 (24)             ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |whack_an_engineer|mainDataPath:dp|scoreKeeper:u3                                                                                                                  ; scoreKeeper               ; work         ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|s_ps2_transceiver                                                                                                                                                               ;
++--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
+; Name                                       ; s_ps2_transceiver.PS2_STATE_3_END_TRANSFER ; s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT ; s_ps2_transceiver.PS2_STATE_1_DATA_IN ; s_ps2_transceiver.PS2_STATE_0_IDLE ; s_ps2_transceiver.PS2_STATE_4_END_DELAYED ;
++--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
+; s_ps2_transceiver.PS2_STATE_0_IDLE         ; 0                                          ; 0                                         ; 0                                     ; 0                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_1_DATA_IN      ; 0                                          ; 0                                         ; 1                                     ; 1                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT  ; 0                                          ; 1                                         ; 0                                     ; 1                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_3_END_TRANSFER ; 1                                          ; 0                                         ; 0                                     ; 1                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_4_END_DELAYED  ; 0                                          ; 0                                         ; 0                                     ; 1                                  ; 1                                         ;
++--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter                                                                                                                                                                                                                                                                                                            ;
++------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
+; Name                                                 ; s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR ; s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT ; s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT ; s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT ; s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA ; s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK ; s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION ; s_ps2_transmitter.PS2_STATE_0_IDLE ;
++------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
+; s_ps2_transmitter.PS2_STATE_0_IDLE                   ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 0                                  ;
+; s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 1                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK         ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 1                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA          ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 1                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT      ; 0                                                ; 0                                              ; 0                                             ; 1                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT        ; 0                                                ; 0                                              ; 1                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT       ; 0                                                ; 1                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR     ; 1                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
++------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver                                                                                                          ;
++------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
+; Name                                     ; s_ps2_receiver.PS2_STATE_3_PARITY_IN ; s_ps2_receiver.PS2_STATE_2_DATA_IN ; s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA ; s_ps2_receiver.PS2_STATE_0_IDLE ; s_ps2_receiver.PS2_STATE_4_STOP_IN ;
++------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
+; s_ps2_receiver.PS2_STATE_0_IDLE          ; 0                                    ; 0                                  ; 0                                        ; 0                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA ; 0                                    ; 0                                  ; 1                                        ; 1                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_2_DATA_IN       ; 0                                    ; 1                                  ; 0                                        ; 1                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_3_PARITY_IN     ; 1                                    ; 0                                  ; 0                                        ; 1                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_4_STOP_IN       ; 0                                    ; 0                                  ; 0                                        ; 1                               ; 1                                  ;
++------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                                                                                    ;
++--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+; Register name                                                                                                                        ; Reason for Removal                                                                                             ;
++--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+; keyboard_decoder:kb|PS2_Controller:comb_3|idle_counter[0..7]                                                                         ; Lost fanout                                                                                                    ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[27]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[27]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[27]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[27]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[26]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[26]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[26]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[26]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[25]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[25]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[25]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[25]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[24]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[24]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[24]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[24]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[23]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[23]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[23]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[23]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[22]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[22]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[22]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[22]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[21]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[21]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[21]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[21]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[20]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[20]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[20]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[20]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[19]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[19]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[19]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[19]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[18]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[18]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[18]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[18]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[17]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[17]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[17]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[17]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[16]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[16]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[16]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[16]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[15]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[15]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[15]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[15]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[14]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[14]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[14]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[14]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[13]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[13]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[13]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[13]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[12]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[12]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[12]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[12]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[11]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[11]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[11]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[11]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[10]                                                                 ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[10]                                              ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[10]                                                                    ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[10]                                              ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[9]                                                                  ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[9]                                               ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[9]                                                                     ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[9]                                               ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[8]                                                                  ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[8]                                               ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[8]                                                                     ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[8]                                               ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[7]                                                                  ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[7]                                               ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[7]                                                                     ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[7]                                               ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[6]                                                                  ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[6]                                               ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[6]                                                                     ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[6]                                               ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[5]                                                                  ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[5]                                               ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[5]                                                                     ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[5]                                               ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[4]                                                                  ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[4]                                               ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[4]                                                                     ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[4]                                               ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[3]                                                                  ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[3]                                               ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[3]                                                                     ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[3]                                               ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[2]                                                                  ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[2]                                               ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[2]                                                                     ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[2]                                               ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[1]                                                                  ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[1]                                               ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[1]                                                                     ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[1]                                               ;
+; mainDataPath:dp|countdownTimer:u2|RateDivider:div0|internalCount[0]                                                                  ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[0]                                               ;
+; mainDataPath:dp|scoreKeeper:u3|RateDivider:div0|internalCount[0]                                                                     ; Merged with mainDataPath:dp|RateDivider:rateDU1|internalCount[0]                                               ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[1..7]                                ; Merged with keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[0] ;
+; keyboard_decoder:kb|data_out[3]                                                                                                      ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[0]                                   ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|s_ps2_transceiver~2                                                                        ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|s_ps2_transceiver~3                                                                        ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~2                              ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~3                              ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~4                              ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~2                                         ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~3                                         ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT                                                  ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|s_ps2_transceiver.PS2_STATE_4_END_DELAYED                                                  ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_was_sent                                 ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|error_communication_timed_out                    ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|s_ps2_transceiver.PS2_STATE_3_END_TRANSFER                                                 ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA                 ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_0_IDLE               ; Stuck at GND due to stuck port data_in                                                                         ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT   ; Lost fanout                                                                                                    ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR ; Lost fanout                                                                                                    ;
+; Total Number of Removed Registers = 89                                                                                               ;                                                                                                                ;
++--------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                                                                                            ;
++-------------------------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+; Register name                                                                       ; Reason for Removal        ; Registers Removed due to This Register                                                                                               ;
++-------------------------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+; keyboard_decoder:kb|PS2_Controller:comb_3|idle_counter[3]                           ; Lost Fanouts              ; keyboard_decoder:kb|PS2_Controller:comb_3|idle_counter[4],                                                                           ;
+;                                                                                     ;                           ; keyboard_decoder:kb|PS2_Controller:comb_3|idle_counter[5],                                                                           ;
+;                                                                                     ;                           ; keyboard_decoder:kb|PS2_Controller:comb_3|idle_counter[6],                                                                           ;
+;                                                                                     ;                           ; keyboard_decoder:kb|PS2_Controller:comb_3|idle_counter[7]                                                                            ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|s_ps2_transceiver~2                       ; Lost Fanouts              ; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_was_sent,                                ;
+;                                                                                     ;                           ; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|error_communication_timed_out,                   ;
+;                                                                                     ;                           ; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT,  ;
+;                                                                                     ;                           ; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR ;
+; keyboard_decoder:kb|PS2_Controller:comb_3|s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT ; Stuck at GND              ; keyboard_decoder:kb|PS2_Controller:comb_3|s_ps2_transceiver.PS2_STATE_3_END_TRANSFER,                                                ;
+;                                                                                     ; due to stuck port data_in ; keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA                 ;
++-------------------------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 196   ;
+; Number of registers using Synchronous Clear  ; 135   ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 31    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 114   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                 ;
++--------------------------------------------------------------------+---------+
+; Inverted Register                                                  ; Fan out ;
++--------------------------------------------------------------------+---------+
+; mainDataPath:dp|countdownTimer:u2|counter:cnt0|currentCountDown[4] ; 7       ;
+; mainDataPath:dp|countdownTimer:u2|counter:cnt0|currentCountDown[3] ; 10      ;
+; mainDataPath:dp|countdownTimer:u2|counter:cnt0|currentCountDown[1] ; 11      ;
+; mainDataPath:dp|countdownTimer:u2|counter:cnt0|currentCountDown[2] ; 10      ;
+; mainDataPath:dp|scoreReset                                         ; 39      ;
+; Total number of inverted registers = 5                             ;         ;
++--------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|received_data[5]                    ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |whack_an_engineer|mainDataPath:dp|scoreKeeper:u3|tempScore[0]                                                                     ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |whack_an_engineer|mainDataPath:dp|generateMoles:u1|pseudo_rng:gen|output_data[2]                                                  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|data_shift_reg[7]                   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |whack_an_engineer|keyboard_decoder:kb|previous_key[7]                                                                             ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |whack_an_engineer|mainDataPath:dp|generateMoles:u1|pseudo_rng:gen|counter[13]                                                     ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |whack_an_engineer|mainDataPath:dp|current_state[0]                                                                                ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |whack_an_engineer|keyboard_decoder:kb|data_out[1]                                                                                 ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[8] ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[16]         ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|cur_bit[0]                  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[3]                       ;
+; 4:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |whack_an_engineer|keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[14]        ;
+; 10:1               ; 3 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; Yes        ; |whack_an_engineer|mainDataPath:dp|generateMoles:u1|pseudo_rng:gen|output_data[0]                                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: keyboard_decoder:kb ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; X_SIZE         ; 160   ; Signed Integer                          ;
+; Y_SIZE         ; 120   ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: keyboard_decoder:kb|PS2_Controller:comb_3 ;
++------------------+-------+-------------------------------------------------------------+
+; Parameter Name   ; Value ; Type                                                        ;
++------------------+-------+-------------------------------------------------------------+
+; INITIALIZE_MOUSE ; 0     ; Signed Integer                                              ;
++------------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out ;
++------------------------------------+----------------------+----------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                                 ;
++------------------------------------+----------------------+----------------------------------------------------------------------+
+; CLOCK_CYCLES_FOR_101US             ; 5050                 ; Signed Integer                                                       ;
+; NUMBER_OF_BITS_FOR_101US           ; 13                   ; Signed Integer                                                       ;
+; COUNTER_INCREMENT_FOR_101US        ; 0000000000001        ; Unsigned Binary                                                      ;
+; CLOCK_CYCLES_FOR_15MS              ; 750000               ; Signed Integer                                                       ;
+; NUMBER_OF_BITS_FOR_15MS            ; 20                   ; Signed Integer                                                       ;
+; COUNTER_INCREMENT_FOR_15MS         ; 00000000000000000001 ; Unsigned Binary                                                      ;
+; CLOCK_CYCLES_FOR_2MS               ; 100000               ; Signed Integer                                                       ;
+; NUMBER_OF_BITS_FOR_2MS             ; 17                   ; Signed Integer                                                       ;
+; COUNTER_INCREMENT_FOR_2MS          ; 00000000000000001    ; Unsigned Binary                                                      ;
+; PS2_STATE_0_IDLE                   ; 000                  ; Unsigned Binary                                                      ;
+; PS2_STATE_1_INITIATE_COMMUNICATION ; 001                  ; Unsigned Binary                                                      ;
+; PS2_STATE_2_WAIT_FOR_CLOCK         ; 010                  ; Unsigned Binary                                                      ;
+; PS2_STATE_3_TRANSMIT_DATA          ; 011                  ; Unsigned Binary                                                      ;
+; PS2_STATE_4_TRANSMIT_STOP_BIT      ; 100                  ; Unsigned Binary                                                      ;
+; PS2_STATE_5_RECEIVE_ACK_BIT        ; 101                  ; Unsigned Binary                                                      ;
+; PS2_STATE_6_COMMAND_WAS_SENT       ; 110                  ; Unsigned Binary                                                      ;
+; PS2_STATE_7_TRANSMISSION_ERROR     ; 111                  ; Unsigned Binary                                                      ;
++------------------------------------+----------------------+----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mainDataPath:dp|RateDivider:rateDU1 ;
++-----------------+----------+-----------------------------------------------------+
+; Parameter Name  ; Value    ; Type                                                ;
++-----------------+----------+-----------------------------------------------------+
+; CLOCK_FREQUENCY ; 50000000 ; Signed Integer                                      ;
++-----------------+----------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mainDataPath:dp|generateMoles:u1|pseudo_rng:gen ;
++----------------+-------+---------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                ;
++----------------+-------+---------------------------------------------------------------------+
+; uppermax       ; 24    ; Signed Integer                                                      ;
++----------------+-------+---------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mainDataPath:dp|countdownTimer:u2|RateDivider:div0 ;
++-----------------+----------+--------------------------------------------------------------------+
+; Parameter Name  ; Value    ; Type                                                               ;
++-----------------+----------+--------------------------------------------------------------------+
+; CLOCK_FREQUENCY ; 50000000 ; Signed Integer                                                     ;
++-----------------+----------+--------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mainDataPath:dp|scoreKeeper:u3|RateDivider:div0 ;
++-----------------+----------+-----------------------------------------------------------------+
+; Parameter Name  ; Value    ; Type                                                            ;
++-----------------+----------+-----------------------------------------------------------------+
+; CLOCK_FREQUENCY ; 50000000 ; Signed Integer                                                  ;
++-----------------+----------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: mainDataPath:dp|generateMoles:u1|pseudo_rng:gen|lpm_divide:Mod0 ;
++------------------------+----------------+------------------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                                   ;
++------------------------+----------------+------------------------------------------------------------------------+
+; LPM_WIDTHN             ; 24             ; Untyped                                                                ;
+; LPM_WIDTHD             ; 3              ; Untyped                                                                ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                                ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                                ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                                ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                                ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                                ;
+; CBXI_PARAMETER         ; lpm_divide_l3m ; Untyped                                                                ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                                ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                                ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                             ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                           ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                           ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                                         ;
++------------------------+----------------+------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "hex_decoder:h5"                                                                                                               ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                                                                    ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; display ; Output ; Warning  ; Output or bidir port (8 bits) is wider than the port expression (7 bits) it drives; bit(s) "display[7..7]" have no fanouts ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "hex_decoder:h3"                                                                                                               ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                                                                    ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; display ; Output ; Warning  ; Output or bidir port (8 bits) is wider than the port expression (7 bits) it drives; bit(s) "display[7..7]" have no fanouts ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "hex_decoder:h2"                                                                                                               ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                                                                    ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; display ; Output ; Warning  ; Output or bidir port (8 bits) is wider than the port expression (7 bits) it drives; bit(s) "display[7..7]" have no fanouts ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "hex_decoder:h1"                                                                                                               ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                                                                    ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; c[3..2] ; Input  ; Info     ; Stuck at GND                                                                                                               ;
+; display ; Output ; Warning  ; Output or bidir port (8 bits) is wider than the port expression (7 bits) it drives; bit(s) "display[7..7]" have no fanouts ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "hex_decoder:h0"                                                                                                               ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                                                                    ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; display ; Output ; Warning  ; Output or bidir port (8 bits) is wider than the port expression (7 bits) it drives; bit(s) "display[7..7]" have no fanouts ;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mainDataPath:dp|matchLogic:u0"                                                          ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; moleMiss ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mainDataPath:dp"                                                                                                                    ;
++---------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                                                                    ;
++---------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; current_state ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                        ;
+; moleHit       ; Output ; Warning  ; Output or bidir port (3 bits) is wider than the port expression (1 bits) it drives; bit(s) "moleHit[2..1]" have no fanouts ;
+; moleHit       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                        ;
++---------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "keyboard_decoder:kb|PS2_Controller:comb_3"                                                                                                                            ;
++-------------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port                          ; Type   ; Severity ; Details                                                                                                                                      ;
++-------------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; the_command                   ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; send_command                  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; command_was_sent              ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; error_communication_timed_out ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++-------------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "keyboard_decoder:kb"                                                                                                              ;
++-----------+--------+----------+------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                                                                      ;
++-----------+--------+----------+------------------------------------------------------------------------------------------------------------------------------+
+; data_temp ; Output ; Warning  ; Output or bidir port (8 bits) is wider than the port expression (4 bits) it drives; bit(s) "data_temp[7..4]" have no fanouts ;
+; data_temp ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                          ;
++-----------+--------+----------+------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 196                         ;
+;     CLR               ; 10                          ;
+;     ENA               ; 14                          ;
+;     ENA CLR           ; 10                          ;
+;     ENA CLR SCLR      ; 11                          ;
+;     ENA SCLR          ; 79                          ;
+;     SCLR              ; 45                          ;
+;     plain             ; 27                          ;
+; arriav_io_obuf        ; 6                           ;
+; arriav_lcell_comb     ; 477                         ;
+;     arith             ; 229                         ;
+;         0 data inputs ; 22                          ;
+;         1 data inputs ; 162                         ;
+;         2 data inputs ; 2                           ;
+;         3 data inputs ; 23                          ;
+;         4 data inputs ; 20                          ;
+;     normal            ; 248                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 8                           ;
+;         2 data inputs ; 56                          ;
+;         3 data inputs ; 35                          ;
+;         4 data inputs ; 60                          ;
+;         5 data inputs ; 53                          ;
+;         6 data inputs ; 35                          ;
+; boundary_port         ; 99                          ;
+;                       ;                             ;
+; Max LUT depth         ; 48.40                       ;
+; Average LUT depth     ; 14.46                       ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+    Info: Processing started: Mon Dec 04 00:52:14 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off whack_an_engineer -c whack_an_engineer
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 9 design units, including 9 entities, in source file fsm_primary/inlab.v
+    Info (12023): Found entity 1: newPart2 File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 44
+    Info (12023): Found entity 2: mainDataPath File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 90
+    Info (12023): Found entity 3: matchLogic File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 301
+    Info (12023): Found entity 4: scoreKeeper File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 348
+    Info (12023): Found entity 5: generateMoles File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 388
+    Info (12023): Found entity 6: pseudo_rng File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 435
+    Info (12023): Found entity 7: countdownTimer File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 474
+    Info (12023): Found entity 8: counter File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 498
+    Info (12023): Found entity 9: RateDivider File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 526
+Info (12021): Found 3 design units, including 3 entities, in source file mouse/mouse.v
+    Info (12023): Found entity 1: mouse File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/mouse/mouse.v Line: 5
+    Info (12023): Found entity 2: mouse_divider File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/mouse/mouse.v Line: 210
+    Info (12023): Found entity 3: mouse_fsm File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/mouse/mouse.v Line: 219
+Info (12021): Found 1 design units, including 1 entities, in source file ps2_core/ps2_controller.v
+    Info (12023): Found entity 1: PS2_Controller File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/ps2_core/PS2_Controller.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file ps2_core/altera_up_ps2_data_in.v
+    Info (12023): Found entity 1: Altera_UP_PS2_Data_In File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/ps2_core/Altera_UP_PS2_Data_In.v Line: 10
+Info (12021): Found 1 design units, including 1 entities, in source file ps2_core/altera_up_ps2_command_out.v
+    Info (12023): Found entity 1: Altera_UP_PS2_Command_Out File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/ps2_core/Altera_UP_PS2_Command_Out.v Line: 10
+Info (12021): Found 3 design units, including 3 entities, in source file keyboard_decoder/keyboard_decoder.v
+    Info (12023): Found entity 1: keyboard_decoder File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/keyboard_decoder/keyboard_decoder.v Line: 3
+    Info (12023): Found entity 2: keyboard_mapper File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/keyboard_decoder/keyboard_decoder.v Line: 53
+    Info (12023): Found entity 3: peripheral_divider File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/keyboard_decoder/keyboard_decoder.v Line: 75
+Info (12021): Found 1 design units, including 1 entities, in source file audio/audio_core/audio_controller.v
+    Info (12023): Found entity 1: Audio_Controller File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/audio_core/Audio_Controller.v Line: 11
+Info (12021): Found 1 design units, including 1 entities, in source file audio/audio_core/audio_clock.v
+    Info (12023): Found entity 1: Audio_Clock File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/audio_core/Audio_Clock.v Line: 39
+Info (12021): Found 1 design units, including 1 entities, in source file audio/audio_core/altera_up_sync_fifo.v
+    Info (12023): Found entity 1: Altera_UP_SYNC_FIFO File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/audio_core/Altera_UP_SYNC_FIFO.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file audio/audio_core/altera_up_clock_edge.v
+    Info (12023): Found entity 1: Altera_UP_Clock_Edge File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/audio_core/Altera_UP_Clock_Edge.v Line: 10
+Info (12021): Found 1 design units, including 1 entities, in source file audio/audio_core/altera_up_audio_out_serializer.v
+    Info (12023): Found entity 1: Altera_UP_Audio_Out_Serializer File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/audio_core/Altera_UP_Audio_Out_Serializer.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file audio/audio_core/altera_up_audio_in_deserializer.v
+    Info (12023): Found entity 1: Altera_UP_Audio_In_Deserializer File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/audio_core/Altera_UP_Audio_In_Deserializer.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file audio/audio_core/altera_up_audio_bit_counter.v
+    Info (12023): Found entity 1: Altera_UP_Audio_Bit_Counter File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/audio_core/Altera_UP_Audio_Bit_Counter.v Line: 11
+Info (12021): Found 1 design units, including 1 entities, in source file audio/de1_soc_audio_example.v
+    Info (12023): Found entity 1: DE1_SoC_Audio_Example File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/DE1_SoC_Audio_Example.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file audio/audio_memory.v
+    Info (12023): Found entity 1: audio_memory File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/audio_memory.v Line: 39
+Info (12021): Found 1 design units, including 1 entities, in source file audio/audio_mem.v
+    Info (12023): Found entity 1: audio_mem File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/audio_mem.v Line: 39
+Warning (10229): Verilog HDL Expression warning at audio_decoder.v(111): truncated literal to match 15 bits File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/audio_decoder.v Line: 111
+Info (12021): Found 2 design units, including 2 entities, in source file audio/audio_decoder.v
+    Info (12023): Found entity 1: audio_decoder File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/audio_decoder.v Line: 1
+    Info (12023): Found entity 2: Clock_divider File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/audio/audio_decoder.v Line: 178
+Info (12021): Found 1 design units, including 1 entities, in source file whack_an_engineer.v
+    Info (12023): Found entity 1: whack_an_engineer File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file hex_decoder.v
+    Info (12023): Found entity 1: hex_decoder File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/hex_decoder.v Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at mouse.v(132): created implicit net for "flag" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/mouse/mouse.v Line: 132
+Warning (10236): Verilog HDL Implicit Net warning at whack_an_engineer.v(48): created implicit net for "key_pressed" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 48
+Critical Warning (10846): Verilog HDL Instantiation warning at keyboard_decoder.v(14): instance has no name File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/keyboard_decoder/keyboard_decoder.v Line: 14
+Info (12127): Elaborating entity "whack_an_engineer" for the top level hierarchy
+Warning (10034): Output port "LEDR[8..5]" at whack_an_engineer.v(16) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 16
+Warning (10034): Output port "VGA_R" at whack_an_engineer.v(21) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+Warning (10034): Output port "VGA_G" at whack_an_engineer.v(21) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+Warning (10034): Output port "VGA_B" at whack_an_engineer.v(21) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+Warning (10034): Output port "VGA_CLK" at whack_an_engineer.v(20) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 20
+Warning (10034): Output port "VGA_HS" at whack_an_engineer.v(20) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 20
+Warning (10034): Output port "VGA_VS" at whack_an_engineer.v(20) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 20
+Warning (10034): Output port "VGA_BLANK_N" at whack_an_engineer.v(20) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 20
+Warning (10034): Output port "VGA_SYNC_N" at whack_an_engineer.v(20) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 20
+Warning (10034): Output port "FPGA_I2C_SCLK" at whack_an_engineer.v(26) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 26
+Warning (10034): Output port "AUD_XCK" at whack_an_engineer.v(26) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 26
+Warning (10034): Output port "AUD_DACDAT" at whack_an_engineer.v(26) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 26
+Info (12128): Elaborating entity "keyboard_decoder" for hierarchy "keyboard_decoder:kb" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 48
+Info (12128): Elaborating entity "PS2_Controller" for hierarchy "keyboard_decoder:kb|PS2_Controller:comb_3" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/keyboard_decoder/keyboard_decoder.v Line: 14
+Info (12128): Elaborating entity "Altera_UP_PS2_Data_In" for hierarchy "keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Data_In:PS2_Data_In" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/ps2_core/PS2_Controller.v Line: 246
+Info (12128): Elaborating entity "Altera_UP_PS2_Command_Out" for hierarchy "keyboard_decoder:kb|PS2_Controller:comb_3|Altera_UP_PS2_Command_Out:PS2_Command_Out" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/ps2_core/PS2_Controller.v Line: 266
+Info (12128): Elaborating entity "mainDataPath" for hierarchy "mainDataPath:dp" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 49
+Warning (10036): Verilog HDL or VHDL warning at inLab.v(111): object "gameOver" assigned a value but never read File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 111
+Info (12128): Elaborating entity "RateDivider" for hierarchy "mainDataPath:dp|RateDivider:rateDU1" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 127
+Warning (10230): Verilog HDL assignment warning at inLab.v(538): truncated value with size 32 to match size of target (28) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 538
+Warning (10230): Verilog HDL assignment warning at inLab.v(540): truncated value with size 32 to match size of target (28) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 540
+Info (12128): Elaborating entity "generateMoles" for hierarchy "mainDataPath:dp|generateMoles:u1" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 129
+Info (12128): Elaborating entity "pseudo_rng" for hierarchy "mainDataPath:dp|generateMoles:u1|pseudo_rng:gen" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 394
+Warning (10230): Verilog HDL assignment warning at inLab.v(449): truncated value with size 32 to match size of target (24) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 449
+Warning (10230): Verilog HDL assignment warning at inLab.v(455): truncated value with size 32 to match size of target (3) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 455
+Warning (10272): Verilog HDL Case Statement warning at inLab.v(462): case item expression covers a value already covered by a previous case item File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 462
+Info (12128): Elaborating entity "matchLogic" for hierarchy "mainDataPath:dp|matchLogic:u0" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 130
+Warning (10230): Verilog HDL assignment warning at inLab.v(336): truncated value with size 32 to match size of target (1) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 336
+Info (12128): Elaborating entity "countdownTimer" for hierarchy "mainDataPath:dp|countdownTimer:u2" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 132
+Info (12128): Elaborating entity "counter" for hierarchy "mainDataPath:dp|countdownTimer:u2|counter:cnt0" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 495
+Warning (10230): Verilog HDL assignment warning at inLab.v(517): truncated value with size 32 to match size of target (6) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 517
+Info (12128): Elaborating entity "scoreKeeper" for hierarchy "mainDataPath:dp|scoreKeeper:u3" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 133
+Warning (10230): Verilog HDL assignment warning at inLab.v(376): truncated value with size 32 to match size of target (8) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 376
+Warning (10230): Verilog HDL assignment warning at inLab.v(381): truncated value with size 32 to match size of target (11) File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 381
+Info (12128): Elaborating entity "hex_decoder" for hierarchy "hex_decoder:h0" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 74
+Warning (10034): Output port "display[7]" at hex_decoder.v(3) has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/hex_decoder.v Line: 3
+Info (278001): Inferred 1 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "mainDataPath:dp|generateMoles:u1|pseudo_rng:gen|Mod0" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 455
+Info (12130): Elaborated megafunction instantiation "mainDataPath:dp|generateMoles:u1|pseudo_rng:gen|lpm_divide:Mod0" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 455
+Info (12133): Instantiated megafunction "mainDataPath:dp|generateMoles:u1|pseudo_rng:gen|lpm_divide:Mod0" with the following parameter: File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 455
+    Info (12134): Parameter "LPM_WIDTHN" = "24"
+    Info (12134): Parameter "LPM_WIDTHD" = "3"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_l3m.tdf
+    Info (12023): Found entity 1: lpm_divide_l3m File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/db/lpm_divide_l3m.tdf Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_olh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_olh File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/db/sign_div_unsign_olh.tdf Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_mve.tdf
+    Info (12023): Found entity 1: alt_u_div_mve File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/db/alt_u_div_mve.tdf Line: 22
+Warning (12241): 8 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13039): The following bidirectional pins have no drivers
+    Warning (13040): bidirectional pin "AUD_BCLK" has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 25
+    Warning (13040): bidirectional pin "AUD_ADCLRCK" has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 25
+    Warning (13040): bidirectional pin "AUD_DACLRCK" has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 25
+    Warning (13040): bidirectional pin "FPGA_I2C_SDAT" has no driver File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 25
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 16
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 16
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 16
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 16
+    Warning (13410): Pin "HEX1[1]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 17
+    Warning (13410): Pin "VGA_CLK" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 20
+    Warning (13410): Pin "VGA_HS" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 20
+    Warning (13410): Pin "VGA_VS" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 20
+    Warning (13410): Pin "VGA_BLANK_N" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 20
+    Warning (13410): Pin "VGA_SYNC_N" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 20
+    Warning (13410): Pin "VGA_R[0]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_R[1]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_R[2]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_R[3]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_R[4]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_R[5]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_R[6]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_R[7]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_G[0]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_G[1]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_G[2]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_G[3]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_G[4]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_G[5]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_G[6]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_G[7]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_B[0]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_B[1]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_B[2]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_B[3]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_B[4]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_B[5]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_B[6]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "VGA_B[7]" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 21
+    Warning (13410): Pin "FPGA_I2C_SCLK" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 26
+    Warning (13410): Pin "AUD_XCK" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 26
+    Warning (13410): Pin "AUD_DACDAT" is stuck at GND File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 26
+Info (286030): Timing-Driven Synthesis is running
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register mainDataPath:dp|countdownTimer:u2|counter:cnt0|currentCountDown[4] will power up to High File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 516
+    Critical Warning (18010): Register mainDataPath:dp|countdownTimer:u2|counter:cnt0|currentCountDown[3] will power up to High File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 516
+    Critical Warning (18010): Register mainDataPath:dp|countdownTimer:u2|counter:cnt0|currentCountDown[1] will power up to High File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 516
+    Critical Warning (18010): Register mainDataPath:dp|countdownTimer:u2|counter:cnt0|currentCountDown[0] will power up to Low File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/fsm_primary/inLab.v Line: 516
+Info (17049): 19 registers lost all their fanouts during netlist optimizations.
+Warning (20013): Ignored 385 assignments for entity "DE1_SoC" -- entity does not exist in design
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_CS_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_DIN -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_DOUT -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_SCLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_ADCDAT -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_ADCLRCK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_BCLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_DACDAT -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_DACLRCK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_XCK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK2_50 -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK3_50 -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK4_50 -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50 -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[10] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[11] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[12] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[8] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[9] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CAS_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CKE -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CS_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[10] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[11] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[12] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[13] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[14] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[15] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[8] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[9] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_LDQM -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_RAS_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_UDQM -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_WE_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FAN_CTRL -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FPGA_I2C_SCLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FPGA_I2C_SDAT -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[10] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[11] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[12] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[13] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[14] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[15] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[16] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[17] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[18] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[19] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[20] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[21] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[22] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[23] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[24] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[25] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[26] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[27] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[28] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[29] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[30] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[31] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[32] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[33] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[34] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[35] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[8] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[9] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[10] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[11] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[12] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[13] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[14] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[15] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[16] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[17] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[18] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[19] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[20] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[21] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[22] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[23] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[24] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[25] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[26] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[27] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[28] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[29] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[30] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[31] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[32] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[33] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[34] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[35] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[8] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[9] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_CONV_USB_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[10] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[11] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[12] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[13] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[14] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[8] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ADDR[9] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_BA[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_BA[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_BA[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_CAS_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_CKE -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to HPS_DDR3_CK_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to HPS_DDR3_CK_P -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_CS_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DM[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DM[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DM[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DM[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to HPS_DDR3_DQS_N[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to HPS_DDR3_DQS_N[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to HPS_DDR3_DQS_N[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to HPS_DDR3_DQS_N[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to HPS_DDR3_DQS_P[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to HPS_DDR3_DQS_P[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to HPS_DDR3_DQS_P[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.5-V SSTL CLASS I" -to HPS_DDR3_DQS_P[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[10] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[11] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[12] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[13] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[14] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[15] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[16] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[17] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[18] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[19] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[20] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[21] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[22] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[23] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[24] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[25] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[26] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[27] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[28] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[29] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[30] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[31] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[8] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_DQ[9] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_ODT -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_RAS_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_RESET_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "1.5 V" -to HPS_DDR3_RZQ -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to HPS_DDR3_WE_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_GTX_CLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_INT_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_MDC -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_MDIO -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_RX_CLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_RX_DATA[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_RX_DATA[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_RX_DATA[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_RX_DATA[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_RX_DV -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_TX_DATA[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_TX_DATA[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_TX_DATA[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_TX_DATA[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_ENET_TX_EN -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_FLASH_DATA[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_FLASH_DATA[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_FLASH_DATA[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_FLASH_DATA[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_FLASH_DCLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_FLASH_NCSO -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_GSENSOR_INT -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_I2C1_SCLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_I2C1_SDAT -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_I2C2_SCLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_I2C2_SDAT -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_I2C_CONTROL -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_KEY -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_LED -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_LTC_GPIO -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_CLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_CMD -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_DATA[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_DATA[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_DATA[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SD_DATA[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SPIM_CLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SPIM_MISO -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SPIM_MOSI -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_SPIM_SS -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_UART_RX -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_UART_TX -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_CLKOUT -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_DATA[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_DATA[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_DATA[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_DATA[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_DATA[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_DATA[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_DATA[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_DATA[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_DIR -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_NXT -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_STP -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to IRDA_RXD -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to IRDA_TXD -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[8] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[9] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_CLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_CLK2 -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_DAT -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PS2_DAT2 -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[8] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[9] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_CLK27 -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_DATA[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_HS -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_RESET_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to TD_VS -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_B2_CLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_B2_DATA[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_B2_DATA[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_B2_DATA[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_B2_DATA[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_B2_DATA[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_B2_DATA[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_B2_DATA[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_B2_DATA[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_EMPTY -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_FULL -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_OE_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_RD_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_RESET_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_SCL -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_SDA -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to USB_WR_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_BLANK_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_B[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_CLK -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_G[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_HS -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[0] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[1] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[2] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[3] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[4] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[5] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[6] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[7] -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_SYNC_N -entity DE1_SoC was ignored
+    Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_VS -entity DE1_SoC was ignored
+Info (144001): Generated suppressed messages file C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/output_files/whack_an_engineer.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 13 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "KEY[2]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 7
+    Warning (15610): No output dependent on input pin "KEY[3]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 7
+    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[1]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[9]" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 15
+    Warning (15610): No output dependent on input pin "AUD_ADCDAT" File: C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/whack_an_engineer.v Line: 24
+Info (21057): Implemented 595 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 16 input pins
+    Info (21059): Implemented 77 output pins
+    Info (21060): Implemented 6 bidirectional pins
+    Info (21061): Implemented 496 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 477 warnings
+    Info: Peak virtual memory: 4906 megabytes
+    Info: Processing ended: Mon Dec 04 00:52:25 2023
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:09
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/wikid/OneDrive - University of Toronto/ECE241/Final project/whack_an_engineer/output_files/whack_an_engineer.map.smsg.
+
+
